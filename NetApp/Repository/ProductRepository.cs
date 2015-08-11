@@ -15,8 +15,8 @@ namespace NetApp.Repository
             var id = (from p in db.ProductPhotoes
                       select new HomeViewModel()
                       {
-                          ThumbNailPhoto = p.ThumbNailPhoto,
-                          ThumbnailPhotoFileName = p.ThumbnailPhotoFileName
+                          ThumbNailPhoto = p.LargePhoto,
+                          PhotoFileName = p.LargePhotoFileName
                       });
             return id.ToList();
             

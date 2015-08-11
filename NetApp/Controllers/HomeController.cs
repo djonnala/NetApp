@@ -21,6 +21,8 @@ namespace NetApp.Controllers
             var id = productRepository.GetMostPopularItems();
             productViewModel.ThumbNailPhoto = id[1].ThumbNailPhoto;
             productViewModel.Photo = byteArraytoImage(id[1].ThumbNailPhoto);
+            productViewModel.PhotoFileName = id[1].PhotoFileName;
+            productViewModel.modeldata = id;
             return View(productViewModel);
         }
 

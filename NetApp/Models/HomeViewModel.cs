@@ -22,6 +22,8 @@ namespace NetApp.Models
 
         public Image Photo { get; set; }
 
-        public string ThumbnailPhotoFileName { get; set; }
+        public string PhotoFileName { get; set; }
+
+        public List<HomeViewModel> modeldata { get; set; }
     }
 }
