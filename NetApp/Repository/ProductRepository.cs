@@ -8,15 +8,17 @@ namespace NetApp.Repository
 {
     public class ProductRepository
     {
+        AdventureWorksEntities db = new AdventureWorksEntities();
         public List<HomeViewModel> GetMostPopularItems()
         {
-            AdventureWorksEntities db = new AdventureWorksEntities();
+            
 
             var id = (from p in db.ProductPhotoes
                       select new HomeViewModel()
                       {
                           ThumbNailPhoto = p.LargePhoto,
-                          PhotoFileName = p.LargePhotoFileName
+                          PhotoFileName = p.LargePhotoFileName,
+                          ProductPhotoId=p.ProductPhotoID
                       });
             return id.ToList();
             
@@ -31,5 +33,21 @@ namespace NetApp.Repository
             //       });
             //return id.ToList();
         }
+
+        public List<ProductViewModel> GetProductDetails(int productphotoid)
+        {
+            var id = (from p in db.ProductPhotoes
+                      join q in db.ProductProductPhotoes on p.ProductPhotoID equals q.ProductPhotoID
+                      join r in db.Products on q.ProductID equals r.ProductID
+                      where p.ProductPhotoID == productphotoid
+                      select new ProductViewModel()
+                      {
+                          ProductId = r.ProductID
+                      });
+
+            return id.ToList();
+                         
+        }
+
     }
 }

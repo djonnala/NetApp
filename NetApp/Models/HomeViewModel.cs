@@ -14,7 +14,7 @@ namespace NetApp.Models
 
         //public Image ProductImage { get; set; }
 
-        public string Name { get; set; }
+        public int ProductPhotoId { get; set; }
 
         public int? Age { get; set; }
 

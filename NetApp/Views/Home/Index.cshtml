@@ -27,7 +27,7 @@
                                         {
                                             <div class="col-sm-4 col-lg-4 col-md-4">
                                                 <div class="thumbnail">
-                                                    <a href="@Url.Action("About", "Home")">
+                                                    <a href="@Url.Action("About", "Home",new { id = Model.modeldata[j].ProductPhotoId })">
                                                         <img src="data:image;base64,@System.Convert.ToBase64String(Model.modeldata[j].ThumbNailPhoto)" />
                                                     </a>
                                                     <div class="caption">
@@ -59,25 +59,27 @@
                                         {
                                             <div class="col-sm-4 col-lg-4 col-md-4">
                                                 <div class="thumbnail">
-                                                    <img src="data:image;base64,@System.Convert.ToBase64String(Model.modeldata[j].ThumbNailPhoto)" />
-                                                    <div class="caption">
-                                                        <h4 class="pull-right">$24.99</h4>
-                                                        <h4>
-                                                            <a href="#">@Model.modeldata[j].PhotoFileName</a>
-                                                        </h4>
-                                                        <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
-                                                    </div>
-                                                    <div class="ratings">
-                                                        <p class="pull-right">15 reviews</p>
-                                                        <p>
-                                                            <span class="glyphicon glyphicon-star"></span>
-                                                            <span class="glyphicon glyphicon-star"></span>
-                                                            <span class="glyphicon glyphicon-star"></span>
-                                                            <span class="glyphicon glyphicon-star"></span>
-                                                            <span class="glyphicon glyphicon-star"></span>
-                                                        </p>
-                                                    </div>
-                                                </div>
+                                                    <a href="@Url.Action("About", "Home",new { id = Model.modeldata[j].ProductPhotoId })">
+                                                        <img src="data:image;base64,@System.Convert.ToBase64String(Model.modeldata[j].ThumbNailPhoto)" />
+                                                    </a>
+                                                        <div class="caption">
+                                                            <h4 class="pull-right">$24.99</h4>
+                                                            <h4>
+                                                                <a href="#">@Model.modeldata[j].PhotoFileName</a>
+                                                            </h4>
+                                                            <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
+                                                        </div>
+                                                        <div class="ratings">
+                                                            <p class="pull-right">15 reviews</p>
+                                                            <p>
+                                                                <span class="glyphicon glyphicon-star"></span>
+                                                                <span class="glyphicon glyphicon-star"></span>
+                                                                <span class="glyphicon glyphicon-star"></span>
+                                                                <span class="glyphicon glyphicon-star"></span>
+                                                                <span class="glyphicon glyphicon-star"></span>
+                                                            </p>
+                                                        </div>
+</div>
                                             </div>
                                         }
                                     </div>

@@ -279,6 +279,7 @@
     <Compile Include="Models\ProductSubcategory.cs">
       <DependentUpon>AdventureWorksDatabase.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="Models\ScrapReason.cs">
       <DependentUpon>AdventureWorksDatabase.tt</DependentUpon>
     </Compile>
