@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="AdventureWorks2012Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="AdventureWorks2012Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -124,24 +124,6 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6005: The data type 'hierarchyid' is currently not supported for the target Entity Framework version; the column 'DocumentNode' in the table 'AdventureWorks2012.Production.Document' was excluded.
-warning 6031: The column 'DocumentNode' on the table/view 'AdventureWorks2012.Production.Document' was excluded, and is a key column.  The table/view has been excluded.  Please fix the entity in the schema file, and uncomment.
-        <EntityType Name="Document">
-          <Property Name="DocumentLevel" Type="smallint" StoreGeneratedPattern="Computed" />
-          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Owner" Type="int" Nullable="false" />
-          <Property Name="FolderFlag" Type="bit" Nullable="false" />
-          <Property Name="FileName" Type="nvarchar" MaxLength="400" Nullable="false" />
-          <Property Name="FileExtension" Type="nvarchar" MaxLength="8" Nullable="false" />
-          <Property Name="Revision" Type="nchar" MaxLength="5" Nullable="false" />
-          <Property Name="ChangeNumber" Type="int" Nullable="false" />
-          <Property Name="Status" Type="tinyint" Nullable="false" />
-          <Property Name="DocumentSummary" Type="nvarchar(max)" />
-          <Property Name="Document" Type="varbinary(max)" />
-          <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
-        </EntityType>-->
         <EntityType Name="Illustration">
           <Key>
             <PropertyRef Name="IllustrationID" />
@@ -558,9 +540,6 @@ warning 6031: The column 'DocumentNode' on the table/view 'AdventureWorks2012.Pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-error 6004: The table 'AdventureWorks2012.Production.Document' is referenced by a relationship, but cannot be found.
-        <Association Name="FK_ProductDocument_Document_DocumentNode" />-->
         <Association Name="FK_ProductDocument_Product_ProductID">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
           <End Role="ProductDocument" Type="Self.ProductDocument" Multiplicity="0..1" />
@@ -777,6 +756,10 @@ error 6004: The table 'AdventureWorks2012.Production.Document' is referenced by 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="uspGetMostPopularProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="uspGetProductDeatils" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProductId" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="AdventureWorks2012ModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -937,8 +920,7 @@ error 6004: The table 'AdventureWorks2012.Production.Document' is referenced by 
             <End Role="WorkOrderRouting" EntitySet="WorkOrderRouting" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AdventureWorks2012Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1865,7 +1847,34 @@ error 6004: The table 'AdventureWorks2012.Production.Document' is referenced by 
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <FunctionImport Name="uspGetProductDeatils" ReturnType="Collection(AdventureWorks2012Model.uspGetProductDeatils_Result)">
+          <Parameter Name="ProductId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetMostPopularProducts" ReturnType="Collection(AdventureWorks2012Model.uspGetMostPopularProducts_Result)" />
         </EntityContainer>
+        <ComplexType Name="uspGetProductDeatils_Result">
+          <Property Type="Int32" Name="ProductID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Color" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="Size" Nullable="true" MaxLength="5" />
+          <Property Type="Decimal" Name="ListPrice" Nullable="false" Precision="19" />
+          <Property Type="String" Name="Weight" Nullable="true" MaxLength="33" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="400" />
+          <Property Type="Binary" Name="LargePhoto" Nullable="true" />
+          <Property Type="Binary" Name="ThumbNailPhoto" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="uspGetMostPopularProducts_Result">
+          <Property Type="Int32" Name="ProductID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Color" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="Size" Nullable="true" MaxLength="5" />
+          <Property Type="Decimal" Name="ListPrice" Nullable="false" Precision="19" />
+          <Property Type="String" Name="Weight" Nullable="true" MaxLength="33" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="400" />
+          <Property Type="Int32" Name="SoldUnits" Nullable="true" />
+          <Property Type="Binary" Name="LargePhoto" Nullable="true" />
+          <Property Type="Binary" Name="ThumbNailPhoto" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2272,6 +2281,37 @@ error 6004: The table 'AdventureWorks2012.Production.Document' is referenced by 
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="uspGetProductDeatils" FunctionName="AdventureWorks2012Model.Store.uspGetProductDeatils">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AdventureWorks2012Model.uspGetProductDeatils_Result">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="ListPrice" ColumnName="ListPrice" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="LargePhoto" ColumnName="LargePhoto" />
+                <ScalarProperty Name="ThumbNailPhoto" ColumnName="ThumbNailPhoto" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspGetMostPopularProducts" FunctionName="AdventureWorks2012Model.Store.uspGetMostPopularProducts">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AdventureWorks2012Model.uspGetMostPopularProducts_Result">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="ListPrice" ColumnName="ListPrice" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="SoldUnits" ColumnName="SoldUnits" />
+                <ScalarProperty Name="LargePhoto" ColumnName="LargePhoto" />
+                <ScalarProperty Name="ThumbNailPhoto" ColumnName="ThumbNailPhoto" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

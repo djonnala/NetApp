@@ -12,6 +12,8 @@ namespace NetApp.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class AdventureWorksEntities : DbContext
     {
@@ -57,5 +59,19 @@ namespace NetApp.Models
         public virtual DbSet<WorkOrder> WorkOrders { get; set; }
         public virtual DbSet<WorkOrderRouting> WorkOrderRoutings { get; set; }
         public virtual DbSet<ProductDocument> ProductDocuments { get; set; }
+    
+        public virtual ObjectResult<uspGetProductDeatils_Result> uspGetProductDeatils(Nullable<int> productId)
+        {
+            var productIdParameter = productId.HasValue ?
+                new ObjectParameter("ProductId", productId) :
+                new ObjectParameter("ProductId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspGetProductDeatils_Result>("uspGetProductDeatils", productIdParameter);
+        }
+    
+        public virtual ObjectResult<uspGetMostPopularProducts_Result> uspGetMostPopularProducts()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspGetMostPopularProducts_Result>("uspGetMostPopularProducts");
+        }
     }
 }

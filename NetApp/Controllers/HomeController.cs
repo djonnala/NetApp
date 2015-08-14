@@ -20,6 +20,12 @@ namespace NetApp.Controllers
             var productViewModel = new HomeViewModel();
 
             var id = productRepository.GetMostPopularItems();
+
+            
+
+
+
+
             productViewModel.ThumbNailPhoto = id[1].ThumbNailPhoto;
             productViewModel.Photo = byteArraytoImage(id[1].ThumbNailPhoto);
             productViewModel.PhotoFileName = id[1].PhotoFileName;
@@ -41,11 +47,13 @@ namespace NetApp.Controllers
         public ActionResult About( int id)
         {
             var productRepository = new ProductRepository();
-
+            var pvm = new ProductViewModel();
             var idprod = productRepository.GetProductDetails(id);
+            idprod.LargePhotodisplay = byteArraytoImage(idprod.LargePhoto);
+            pvm = idprod;
             ViewBag.Message = "Your application description page.";
 
-            return View();
+            return View(pvm);
         }
 
         public ActionResult Contact()

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Drawing;
 
 namespace NetApp.Models
 {
@@ -9,7 +10,21 @@ namespace NetApp.Models
     {
         public int ProductId { get; set; }
 
-        public string ProductDescription { get; set; }
+        public string Name { get; set; }
+
+        public string color { get; set; }
+
+        public string size { get; set; }
+
+        public decimal listPrice { get; set; }
+
+        public string Weight { get; set; }
+
+        public string description { get; set; }
+
+        public byte[] LargePhoto { get; set; }
+
+        public Image LargePhotodisplay { get; set; }
 
 
     }

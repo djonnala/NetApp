@@ -8,6 +8,16 @@ namespace NetApp.Models
 {
     public class HomeViewModel
     {
+        public int productId { get; set; }
+
+        public string Name { get; set; }
+
+        public string Color { get; set; }
+
+        public decimal ListPrice { get; set; }
+
+        public IEnumerable<HomeViewModel> hvm { get; set; }
+
         //public string ProductName { get; set; }
 
         //public string ProductPrice { get; set; }

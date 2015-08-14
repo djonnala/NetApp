@@ -11,41 +11,58 @@ namespace NetApp.Repository
         AdventureWorksEntities db = new AdventureWorksEntities();
         public List<HomeViewModel> GetMostPopularItems()
         {
+
+            var mpp = db.uspGetMostPopularProducts().ToList();
+            var hvm = new List<HomeViewModel>();
+            for(int i=0;i<10;i++)
+            {
+                hvm.Add(new HomeViewModel() { Name = mpp[i].Name,ListPrice=mpp[1].ListPrice,ThumbNailPhoto=mpp[i].LargePhoto,productId=mpp[i].ProductID });
+            }
             
+            return hvm;
 
-            var id = (from p in db.ProductPhotoes
-                      select new HomeViewModel()
-                      {
-                          ThumbNailPhoto = p.LargePhoto,
-                          PhotoFileName = p.LargePhotoFileName,
-                          ProductPhotoId=p.ProductPhotoID
-                      });
-            return id.ToList();
-            
 
-            //TestDatabaseEntities db = new TestDatabaseEntities();
 
-            //var id=(from p in db.testtables
-            //       select new HomeViewModel()
-            //       {
-            //           Name=p.Name,
-            //           Age=p.AGE
-            //       });
+
+            //var mostpp = new HomeViewModel();
+            //var mpp = db.uspGetMostPopularProducts().ToList();
+
+            //mostpp.Name = mpp[1].Name;
+
+            //return mostpp;
+
+            //var id = (from p in db.ProductPhotoes
+            //          select new HomeViewModel()
+            //          {
+            //              ThumbNailPhoto = p.LargePhoto,
+            //              PhotoFileName = p.LargePhotoFileName,
+            //              ProductPhotoId=p.ProductPhotoID
+            //          });
             //return id.ToList();
+    
         }
 
-        public List<ProductViewModel> GetProductDetails(int productphotoid)
+        public ProductViewModel GetProductDetails(int productphotoid)
         {
-            var id = (from p in db.ProductPhotoes
-                      join q in db.ProductProductPhotoes on p.ProductPhotoID equals q.ProductPhotoID
-                      join r in db.Products on q.ProductID equals r.ProductID
-                      where p.ProductPhotoID == productphotoid
-                      select new ProductViewModel()
-                      {
-                          ProductId = r.ProductID
-                      });
+            var productdetails = db.uspGetProductDeatils(762);
 
-            return id.ToList();
+            var prodetails = new ProductViewModel();
+
+            foreach (uspGetProductDeatils_Result pv in productdetails.ToList())
+            {
+                prodetails.ProductId = pv.ProductID;
+                prodetails.size = pv.Size;
+                prodetails.Weight = pv.Weight;
+                prodetails.listPrice = pv.ListPrice;
+                prodetails.LargePhoto = pv.LargePhoto;
+                prodetails.description = pv.Description;
+                prodetails.color = pv.Color;
+                prodetails.Name = pv.Name;
+            }
+            
+            
+            return prodetails;
+
                          
         }
 

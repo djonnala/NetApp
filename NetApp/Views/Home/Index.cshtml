@@ -18,7 +18,7 @@
                     <div class="carousel slide" id="MostPopularitems" data-ride="carousel" data-interval="0">
                         <h2 style="padding-left:10px">Most Popular Items</h2>
                         <div class="carousel-inner">
-                            @for(int i=0;i<10;i=i+3)
+                            @for(int i=0;i<6;i=i+3)
                             {
                                 if(i==0)
                                 {
@@ -31,13 +31,13 @@
                                                         <img src="data:image;base64,@System.Convert.ToBase64String(Model.modeldata[j].ThumbNailPhoto)" />
                                                     </a>
                                                     <div class="caption">
-                                                        <h4 class="pull-right">$24.99</h4>
+                                                        <h4 class="pull-right">@Model.modeldata[j].ListPrice</h4>
                                                         <h4>
-                                                            <a href="#">@Model.modeldata[j].PhotoFileName</a>
+                                                            <a href="#">@Model.modeldata[j].Name</a>
                                                         </h4>
-                                                        <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
+                                                        
                                                     </div>
-                                                    <div class="ratings">
+                                                    @*<div class="ratings">
                                                         <p class="pull-right">15 reviews</p>
                                                         <p>
                                                             <span class="glyphicon glyphicon-star"></span>
@@ -46,7 +46,7 @@
                                                             <span class="glyphicon glyphicon-star"></span>
                                                             <span class="glyphicon glyphicon-star"></span>
                                                         </p>
-                                                    </div>
+                                                    </div>*@
                                                 </div>
                                             </div>
                                         }
@@ -65,11 +65,11 @@
                                                         <div class="caption">
                                                             <h4 class="pull-right">$24.99</h4>
                                                             <h4>
-                                                                <a href="#">@Model.modeldata[j].PhotoFileName</a>
+                                                                <a href="#">@Model.modeldata[j].Name</a>
                                                             </h4>
-                                                            <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
+                                                            
                                                         </div>
-                                                        <div class="ratings">
+                                                        @*<div class="ratings">
                                                             <p class="pull-right">15 reviews</p>
                                                             <p>
                                                                 <span class="glyphicon glyphicon-star"></span>
@@ -78,7 +78,7 @@
                                                                 <span class="glyphicon glyphicon-star"></span>
                                                                 <span class="glyphicon glyphicon-star"></span>
                                                             </p>
-                                                        </div>
+                                                        </div>*@
 </div>
                                             </div>
                                         }
@@ -96,7 +96,7 @@
                         </div>
                     </div>
 
-                <div class="row">
+                @*<div class="row">
 
                     <div class="carousel slide" id="Recommended" data-ride="carousel" data-interval="0">
                         <h2 style="padding-left:10px">Recommended Items for You</h2>
@@ -175,7 +175,7 @@
                             <span class="glyphicon glyphicon-chevron-right"></span>
                         </a>
                     </div>
-                </div>
+                </div>*@
                 </div>
     </div>
 </div>
