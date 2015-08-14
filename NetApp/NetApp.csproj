@@ -298,6 +298,12 @@
     <Compile Include="Models\uspGetMostPopularProducts_Result.cs">
       <DependentUpon>AdventureWorksDatabase.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\uspGetMpstPopularBikes_Result.cs">
+      <DependentUpon>AdventureWorksDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\uspGetMpstPopularClothing_Result.cs">
+      <DependentUpon>AdventureWorksDatabase.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\uspGetProductDeatils_Result.cs">
       <DependentUpon>AdventureWorksDatabase.tt</DependentUpon>
     </Compile>

@@ -18,7 +18,7 @@
                     <div class="carousel slide" id="MostPopularitems" data-ride="carousel" data-interval="0">
                         <h2 style="padding-left:10px">Most Popular Items</h2>
                         <div class="carousel-inner">
-                            @for(int i=0;i<6;i=i+3)
+                            @for(int i=0;i<9;i=i+3)
                             {
                                 if(i==0)
                                 {
@@ -27,11 +27,11 @@
                                         {
                                             <div class="col-sm-4 col-lg-4 col-md-4">
                                                 <div class="thumbnail">
-                                                    <a href="@Url.Action("About", "Home",new { id = Model.modeldata[j].ProductPhotoId })">
+                                                    <a href="@Url.Action("About", "Home",new { id = Model.modeldata[j].productId })">
                                                         <img src="data:image;base64,@System.Convert.ToBase64String(Model.modeldata[j].ThumbNailPhoto)" />
                                                     </a>
                                                     <div class="caption">
-                                                        <h4 class="pull-right">@Model.modeldata[j].ListPrice</h4>
+                                                        <h4 class="pull-right">$@Model.modeldata[j].ListPrice.ToString("0.00")</h4>
                                                         <h4>
                                                             <a href="#">@Model.modeldata[j].Name</a>
                                                         </h4>
@@ -63,7 +63,7 @@
                                                         <img src="data:image;base64,@System.Convert.ToBase64String(Model.modeldata[j].ThumbNailPhoto)" />
                                                     </a>
                                                         <div class="caption">
-                                                            <h4 class="pull-right">$24.99</h4>
+                                                            <h4 class="pull-right">$@Model.modeldata[j].ListPrice.ToString("0.00")</h4>
                                                             <h4>
                                                                 <a href="#">@Model.modeldata[j].Name</a>
                                                             </h4>
@@ -96,40 +96,30 @@
                         </div>
                     </div>
 
-                @*<div class="row">
+                <div class="row">
 
                     <div class="carousel slide" id="Recommended" data-ride="carousel" data-interval="0">
-                        <h2 style="padding-left:10px">Recommended Items for You</h2>
+                        <h2 style="padding-left:10px">MostPopular Bikes</h2>
                         <div class="carousel-inner">
-                            @for (int i = 0; i < 10; i = i + 3)
+                            @for (int i = 0; i < 8; i = i + 4)
                             {
                                 if (i == 0)
                                 {
                                     <div class="item active">
-                                        @for (int j = i; j < i + 3; j++)
+                                        @for (int j = i; j < i + 4; j++)
                                         {
-                                            <div class="col-sm-4 col-lg-4 col-md-4">
+                                            <div class="col-sm-3 col-lg-3 col-md-3">
                                                 <div class="thumbnail">
-                                                    <a href="@Url.Action("About", "Home")">
-                                                        <img src="data:image;base64,@System.Convert.ToBase64String(Model.modeldata[j].ThumbNailPhoto)" />
+                                                    <a href="@Url.Action("About", "Home",new { id = Model.PopularBikes[j].productId })">
+                                                        <img src="data:image;base64,@System.Convert.ToBase64String(Model.PopularBikes[j].ThumbNailPhoto)" />
                                                     </a>
                                                     <div class="caption">
-                                                        <h4 class="pull-right">$24.99</h4>
+                                                        <h4 class="pull-right">$@Model.PopularBikes[j].ListPrice.ToString("0.00")</h4>
                                                         <h4>
-                                                            <a href="#">@Model.modeldata[j].PhotoFileName</a>
+                                                            <a href="#">@Model.PopularBikes[j].Name</a>
                                                         </h4>
-                                                        <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
                                                     </div>
-                                                    <div class="ratings">
-                                                        <p class="pull-right">15 reviews</p>
-                                                        <p>
-                                                            <span class="glyphicon glyphicon-star"></span>
-                                                            <span class="glyphicon glyphicon-star"></span>
-                                                            <span class="glyphicon glyphicon-star"></span>
-                                                            <span class="glyphicon glyphicon-star"></span>
-                                                            <span class="glyphicon glyphicon-star"></span>
-                                                        </p>
-                                                    </div>
+                                                    
                                                 </div>
                                             </div>
                                         }
@@ -138,28 +128,22 @@
                                 if (i != 0)
                                 {
                                     <div class="item">
-                                        @for (int j = i; j < i + 3; j++)
+                                        @for (int j = i; j < i + 4; j++)
                                         {
-                                            <div class="col-sm-4 col-lg-4 col-md-4">
+                                            <div class="col-sm-3 col-lg-3 col-md-3">
                                                 <div class="thumbnail">
-                                                    <img src="data:image;base64,@System.Convert.ToBase64String(Model.modeldata[j].ThumbNailPhoto)" />
-                                                    <div class="caption">
-                                                        <h4 class="pull-right">$24.99</h4>
-                                                        <h4>
-                                                            <a href="#">@Model.modeldata[j].PhotoFileName</a>
-                                                        </h4>
-                                                        <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
-                                                    </div>
-                                                    <div class="ratings">
-                                                        <p class="pull-right">15 reviews</p>
-                                                        <p>
-                                                            <span class="glyphicon glyphicon-star"></span>
-                                                            <span class="glyphicon glyphicon-star"></span>
-                                                            <span class="glyphicon glyphicon-star"></span>
-                                                            <span class="glyphicon glyphicon-star"></span>
-                                                            <span class="glyphicon glyphicon-star"></span>
-                                                        </p>
-                                                    </div>
+
+                                                    <a href="@Url.Action("About", "Home",new { id = Model.PopularBikes[j].productId })">
+                                                        <img src="data:image;base64,@System.Convert.ToBase64String(Model.PopularBikes[j].ThumbNailPhoto)" />
+                                                     </a>
+                                                        <div class="caption">
+                                                            <h4 class="pull-right">$@Model.PopularBikes[j].ListPrice.ToString("0.00")</h4>
+                                                            <h4>
+                                                                <a href="#">@Model.PopularBikes[j].Name</a>
+                                                            </h4>
+                                                           
+                                                        </div>
+                                                       
                                                 </div>
                                             </div>
                                         }
@@ -175,7 +159,72 @@
                             <span class="glyphicon glyphicon-chevron-right"></span>
                         </a>
                     </div>
-                </div>*@
+                </div>
+
+                <div class="row">
+
+                    <div class="carousel slide" id="MostPopularClothing" data-ride="carousel" data-interval="0">
+                        <h2 style="padding-left:10px">Most Popular Clothing</h2>
+                        <div class="carousel-inner">
+                            @for (int i = 0; i < 9; i = i + 3)
+                            {
+                                if (i == 0)
+                                {
+                                    <div class="item active">
+                                        @for (int j = i; j < i + 3; j++)
+                                        {
+                                            <div class="col-sm-4 col-lg-4 col-md-4">
+                                                <div class="thumbnail">
+                                                    <a href="@Url.Action("About", "Home",new { id = Model.PopularClothing[j].productId })">
+                                                        <img src="data:image;base64,@System.Convert.ToBase64String(Model.PopularClothing[j].ThumbNailPhoto)" />
+                                                    </a>
+                                                    <div class="caption">
+                                                        <h4 class="pull-right">$@Model.PopularClothing[j].ListPrice.ToString("0.00")</h4>
+                                                        <h4>
+                                                            <a href="#">@Model.PopularClothing[j].Name</a>
+                                                        </h4>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                                if (i != 0)
+                                {
+                                    <div class="item">
+                                        @for (int j = i; j < i + 3; j++)
+                                        {
+                                            <div class="col-sm-4 col-lg-4 col-md-4">
+                                                <div class="thumbnail">
+
+                                                    <a href="@Url.Action("About", "Home",new { id = Model.PopularClothing[j].productId })">
+                                                        <img src="data:image;base64,@System.Convert.ToBase64String(Model.PopularClothing[j].ThumbNailPhoto)" />
+                                                    </a>
+                                                    <div class="caption">
+                                                        <h4 class="pull-right">$@Model.PopularClothing[j].ListPrice.ToString("0.00")</h4>
+                                                        <h4>
+                                                            <a href="#">@Model.PopularClothing[j].Name</a>
+                                                        </h4>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                            }
+
+                        </div>
+                        <a class="left carousel-control" href="#MostPopularClothing" role="button" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                        </a>
+                        <a class="right carousel-control" href="#MostPopularClothing" role="button" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                        </a>
+                    </div>
+                </div>
                 </div>
     </div>
 </div>

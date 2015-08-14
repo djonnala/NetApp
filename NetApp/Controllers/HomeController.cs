@@ -17,20 +17,21 @@ namespace NetApp.Controllers
         {
             var productRepository = new ProductRepository();
 
-            var productViewModel = new HomeViewModel();
+            var MostPopularItems = new HomeViewModel();
 
             var id = productRepository.GetMostPopularItems();
 
+            var pb = productRepository.GetMostPopularBikes();
+
+            var pc = productRepository.GetMostPopularClothing();
+
+            MostPopularItems.PopularClothing = pc;
+            
+            MostPopularItems.PopularBikes = pb;
             
 
-
-
-
-            productViewModel.ThumbNailPhoto = id[1].ThumbNailPhoto;
-            productViewModel.Photo = byteArraytoImage(id[1].ThumbNailPhoto);
-            productViewModel.PhotoFileName = id[1].PhotoFileName;
-            productViewModel.modeldata = id;
-            return View(productViewModel);
+            MostPopularItems.modeldata = id;
+            return View(MostPopularItems);
         }
         [HttpPost]
         public ActionResult Index( int ProductId)
@@ -38,18 +39,18 @@ namespace NetApp.Controllers
             return View();
         }
 
-        public  Image byteArraytoImage(byte[] byteArrayIn)
-        {
-            MemoryStream ms = new MemoryStream(byteArrayIn);
-            Image returnImage = Image.FromStream(ms);
-            return returnImage;
-        }
+        //public  Image byteArraytoImage(byte[] byteArrayIn)
+        //{
+        //    MemoryStream ms = new MemoryStream(byteArrayIn);
+        //    Image returnImage = Image.FromStream(ms);
+        //    return returnImage;
+        //}
         public ActionResult About( int id)
         {
             var productRepository = new ProductRepository();
             var pvm = new ProductViewModel();
             var idprod = productRepository.GetProductDetails(id);
-            idprod.LargePhotodisplay = byteArraytoImage(idprod.LargePhoto);
+           // idprod.LargePhotodisplay = byteArraytoImage(idprod.LargePhoto);
             pvm = idprod;
             ViewBag.Message = "Your application description page.";
 

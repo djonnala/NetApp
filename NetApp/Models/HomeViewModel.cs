@@ -12,11 +12,7 @@ namespace NetApp.Models
 
         public string Name { get; set; }
 
-        public string Color { get; set; }
-
         public decimal ListPrice { get; set; }
-
-        public IEnumerable<HomeViewModel> hvm { get; set; }
 
         //public string ProductName { get; set; }
 
@@ -26,14 +22,14 @@ namespace NetApp.Models
 
         public int ProductPhotoId { get; set; }
 
-        public int? Age { get; set; }
 
         public byte[] ThumbNailPhoto { get; set; }
 
-        public Image Photo { get; set; }
-
-        public string PhotoFileName { get; set; }
 
         public List<HomeViewModel> modeldata { get; set; }
+
+        public List<HomeViewModel> PopularBikes { get; set; }
+
+        public List<HomeViewModel> PopularClothing { get; set; }
     }
 }

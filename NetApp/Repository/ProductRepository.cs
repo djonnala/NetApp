@@ -21,30 +21,35 @@ namespace NetApp.Repository
             
             return hvm;
 
-
-
-
-            //var mostpp = new HomeViewModel();
-            //var mpp = db.uspGetMostPopularProducts().ToList();
-
-            //mostpp.Name = mpp[1].Name;
-
-            //return mostpp;
-
-            //var id = (from p in db.ProductPhotoes
-            //          select new HomeViewModel()
-            //          {
-            //              ThumbNailPhoto = p.LargePhoto,
-            //              PhotoFileName = p.LargePhotoFileName,
-            //              ProductPhotoId=p.ProductPhotoID
-            //          });
-            //return id.ToList();
     
+        }
+
+
+        public List<HomeViewModel> GetMostPopularBikes()
+        {
+            var mpb = db.uspGetMpstPopularBikes().ToList();
+            var hvm = new List<HomeViewModel>();
+            for(int i=0;i<10;i++)
+            {
+                hvm.Add(new HomeViewModel() { Name = mpb[i].Name, ListPrice = mpb[i].ListPrice, ThumbNailPhoto = mpb[i].LargePhoto, productId = mpb[i].ProductID });
+            }
+            return hvm;
+        }
+
+        public List<HomeViewModel> GetMostPopularClothing()
+        {
+            var mpb = db.uspGetMpstPopularClothing().ToList();
+            var hvm = new List<HomeViewModel>();
+            for (int i = 0; i < 10; i++)
+            {
+                hvm.Add(new HomeViewModel() { Name = mpb[i].Name, ListPrice = mpb[i].ListPrice, ThumbNailPhoto = mpb[i].LargePhoto, productId = mpb[i].ProductID });
+            }
+            return hvm;
         }
 
         public ProductViewModel GetProductDetails(int productphotoid)
         {
-            var productdetails = db.uspGetProductDeatils(762);
+            var productdetails = db.uspGetProductDeatils(productphotoid);
 
             var prodetails = new ProductViewModel();
 

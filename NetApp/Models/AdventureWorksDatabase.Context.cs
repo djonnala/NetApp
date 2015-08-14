@@ -73,5 +73,15 @@ namespace NetApp.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspGetMostPopularProducts_Result>("uspGetMostPopularProducts");
         }
+    
+        public virtual ObjectResult<uspGetMpstPopularBikes_Result> uspGetMpstPopularBikes()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspGetMpstPopularBikes_Result>("uspGetMpstPopularBikes");
+        }
+    
+        public virtual ObjectResult<uspGetMpstPopularClothing_Result> uspGetMpstPopularClothing()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspGetMpstPopularClothing_Result>("uspGetMpstPopularClothing");
+        }
     }
 }
