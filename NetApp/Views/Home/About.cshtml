@@ -53,6 +53,71 @@
     <!-- /.row -->
     <!-- Related Projects Row -->
     <div class="row">
+
+        <div class="carousel slide" id="PeopleAlsoBought" data-ride="carousel" data-interval="0">
+            <h2 style="padding-left:10px">People who bought This also bought</h2>
+            <div class="carousel-inner">
+                @for (int i = 0; i < 9; i = i + 3)
+                {
+                    if (i == 0)
+                    {
+                        <div class="item active">
+                            @for (int j = i; j < i + 3; j++)
+                            {
+                                <div class="col-sm-4 col-lg-4 col-md-4">
+                                    <div class="thumbnail">
+                                        <a href="@Url.Action("About", "Home",new { id = Model.PeopleAlsoBought[j].ProductId })">
+                                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.PeopleAlsoBought[j].LargePhoto)" />
+                                        </a>
+                                        <div class="caption">
+                                            <h4 class="pull-right">$@Model.PeopleAlsoBought[j].listPrice.ToString("0.00")</h4>
+                                            <h4>
+                                                <a href="#">@Model.PeopleAlsoBought[j].Name</a>
+                                            </h4>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                    if (i != 0)
+                    {
+                        <div class="item">
+                            @for (int j = i; j < i + 3; j++)
+                            {
+                                <div class="col-sm-4 col-lg-4 col-md-4">
+                                    <div class="thumbnail">
+
+                                        <a href="@Url.Action("About", "Home",new { id = Model.PeopleAlsoBought[j].ProductId })">
+                                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.PeopleAlsoBought[j].LargePhoto)" />
+                                        </a>
+                                        <div class="caption">
+                                            <h4 class="pull-right">$@Model.PeopleAlsoBought[j].listPrice.ToString("0.00")</h4>
+                                            <h4>
+                                                <a href="#">@Model.PeopleAlsoBought[j].Name</a>
+                                            </h4>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                }
+
+            </div>
+            <a class="left carousel-control" href="#PeopleAlsoBought" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#PeopleAlsoBought" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+        </div>
+    </div>
+
+    @*<div class="row">
         <div class="col-lg-12">
             <h3 class="page-header">Related Items</h3>
         </div>
@@ -76,7 +141,7 @@
                 <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
             </a>
         </div>
-    </div>
+    </div>*@
     <!-- /.row -->
     <hr>
     <!-- Footer -->

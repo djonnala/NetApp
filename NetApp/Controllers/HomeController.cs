@@ -33,12 +33,7 @@ namespace NetApp.Controllers
             MostPopularItems.modeldata = id;
             return View(MostPopularItems);
         }
-        [HttpPost]
-        public ActionResult Index( int ProductId)
-        {
-            return View();
-        }
-
+   
         //public  Image byteArraytoImage(byte[] byteArrayIn)
         //{
         //    MemoryStream ms = new MemoryStream(byteArrayIn);
@@ -49,9 +44,19 @@ namespace NetApp.Controllers
         {
             var productRepository = new ProductRepository();
             var pvm = new ProductViewModel();
+
+            var gpab = productRepository.GetPeopleAlsoBought(id);
+
+            pvm.PeopleAlsoBought = gpab;
             var idprod = productRepository.GetProductDetails(id);
            // idprod.LargePhotodisplay = byteArraytoImage(idprod.LargePhoto);
-            pvm = idprod;
+            pvm.LargePhoto = idprod.LargePhoto;
+            pvm.listPrice = idprod.listPrice;
+            pvm.Name = idprod.Name;
+            pvm.ProductId = idprod.ProductId;
+            pvm.color = idprod.color;
+            pvm.Weight = idprod.Weight;
+            pvm.size = idprod.size;
             ViewBag.Message = "Your application description page.";
 
             return View(pvm);

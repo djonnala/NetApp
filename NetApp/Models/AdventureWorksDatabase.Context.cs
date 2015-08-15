@@ -83,5 +83,16 @@ namespace NetApp.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspGetMpstPopularClothing_Result>("uspGetMpstPopularClothing");
         }
+    
+        public virtual ObjectResult<uspGetPeopleAlsoBought_Result> uspGetPeopleAlsoBought(Nullable<int> productId)
+        {
+            var productIdParameter = productId.HasValue ?
+                new ObjectParameter("ProductId", productId) :
+                new ObjectParameter("ProductId", typeof(int));
+
+            ((IObjectContextAdapter)this).ObjectContext.CommandTimeout = 180;
+
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspGetPeopleAlsoBought_Result>("uspGetPeopleAlsoBought", productIdParameter);
+        }
     }
 }

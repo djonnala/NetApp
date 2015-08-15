@@ -304,6 +304,9 @@
     <Compile Include="Models\uspGetMpstPopularClothing_Result.cs">
       <DependentUpon>AdventureWorksDatabase.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\uspGetPeopleAlsoBought_Result.cs">
+      <DependentUpon>AdventureWorksDatabase.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\uspGetProductDeatils_Result.cs">
       <DependentUpon>AdventureWorksDatabase.tt</DependentUpon>
     </Compile>

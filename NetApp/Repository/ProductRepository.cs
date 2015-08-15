@@ -25,6 +25,20 @@ namespace NetApp.Repository
         }
 
 
+        public List<ProductViewModel> GetPeopleAlsoBought(int productId)
+        {
+            
+            var PAB = db.uspGetPeopleAlsoBought(productId).ToList();
+            var pvm = new List<ProductViewModel>();
+
+            for(int i=0;i<10;i++)
+            {
+                pvm.Add(new ProductViewModel() { Name = PAB[i].Name, listPrice = PAB[i].ListPrice, LargePhoto = PAB[i].LargePhoto, ProductId = PAB[i].ProductID });
+            }
+
+            return pvm;
+        }
+
         public List<HomeViewModel> GetMostPopularBikes()
         {
             var mpb = db.uspGetMpstPopularBikes().ToList();

@@ -24,8 +24,8 @@ namespace NetApp.Models
 
         public byte[] LargePhoto { get; set; }
 
-        public Image LargePhotodisplay { get; set; }
 
+        public List<ProductViewModel> PeopleAlsoBought { get; set; }
 
     }
 }
