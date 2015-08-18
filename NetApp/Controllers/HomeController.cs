@@ -19,6 +19,9 @@ namespace NetApp.Controllers
 
             var MostPopularItems = new HomeViewModel();
 
+            var tvr = productRepository.GetTreeViewItems();
+            
+
             var id = productRepository.GetMostPopularItems();
 
             var pb = productRepository.GetMostPopularBikes();
@@ -28,18 +31,29 @@ namespace NetApp.Controllers
             MostPopularItems.PopularClothing = pc;
             
             MostPopularItems.PopularBikes = pb;
-            
 
+            MostPopularItems.Categories = tvr;
+
+          
+           
             MostPopularItems.modeldata = id;
             return View(MostPopularItems);
         }
+
+       
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public JsonResult AutoComplete(string term)
+        {
+            AdventureWorksEntities db = new AdventureWorksEntities();
+            var result = (from b in db.Products
+                          where b.Name.Contains(term)
+                          select b.Name).ToList();
+            return Json(result, JsonRequestBehavior.AllowGet);
+
+        }
    
-        //public  Image byteArraytoImage(byte[] byteArrayIn)
-        //{
-        //    MemoryStream ms = new MemoryStream(byteArrayIn);
-        //    Image returnImage = Image.FromStream(ms);
-        //    return returnImage;
-        //}
+       [HttpGet]
         public ActionResult About( int id)
         {
             var productRepository = new ProductRepository();
@@ -57,10 +71,36 @@ namespace NetApp.Controllers
             pvm.color = idprod.color;
             pvm.Weight = idprod.Weight;
             pvm.size = idprod.size;
+            pvm.description = idprod.description;
             ViewBag.Message = "Your application description page.";
 
             return View(pvm);
         }
+
+        [HttpPost]
+        public ActionResult About(ProductViewModel pvm)
+        {
+            var productRepository = new ProductRepository();
+            int productid = pvm.ProductId;
+            int customerid = 11111;
+            int quantity = pvm.quantity;
+            var idprod = productRepository.GetProductDetails(productid);
+            pvm.LargePhoto = idprod.LargePhoto;
+            pvm.listPrice = idprod.listPrice;
+            pvm.Name = idprod.Name;
+            pvm.color = idprod.color;
+            pvm.Weight = idprod.Weight;
+            pvm.size = idprod.size;
+            pvm.description = idprod.description;
+            var gpab = productRepository.GetPeopleAlsoBought(productid);
+
+            pvm.PeopleAlsoBought = gpab;
+
+
+            productRepository.InsertNewSaleItem(customerid, productid, quantity);
+            return View(pvm);
+        }
+
 
         public ActionResult Contact()
         {

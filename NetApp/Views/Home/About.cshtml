@@ -1,5 +1,8 @@
 ﻿@model NetApp.Models.ProductViewModel
 
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> 
+
 @{
     ViewBag.Title = "About";
 }
@@ -31,23 +34,44 @@
                 <li>Color: @Model.color</li>
                 <li>Size:  @Model.size</li>
                 <li>Weight:@Model.Weight</li>
-                <li>Price: @Model.listPrice</li>
+                <li>Price: @Model.listPrice.ToString("0.00")</li>
             </ul>
 
             <br /> 
             <div style="float:left">
+                @using (Html.BeginForm())
+                {
                 <b>Count: </b> 
-                @Html.DropDownList("Count", new List<SelectListItem>
+                 @Html.HiddenFor(m => m.ProductId);
+                    @*@Html.HiddenFor(m => m.Name);
+                    @Html.HiddenFor(m => m.LargePhoto);
+                    @Html.HiddenFor(m => m.color);
+                    @Html.HiddenFor(m => m.size);
+                    @Html.HiddenFor(m => m.Weight);
+                    @Html.HiddenFor(m => m.listPrice);*@
+
+                    @Html.HiddenFor(m => m.PeopleAlsoBought);
+                    var listItems = new List<SelectListItem>()
+                    {
+                        new SelectListItem{ Text="1", Value = "1" },
+                        new SelectListItem{ Text="2", Value = "2" },
+                        new SelectListItem{ Text="3", Value = "3" }
+                    };
+
+                    @Html.DropDownListFor(m => m.quantity, listItems, string.Empty)
+                
+                    <button type="submit" value="Buy"></button>
+                @*@Html.DropDownList("Count", new List<SelectListItem>
                 {
                    new SelectListItem{ Text="1", Value = "1" },
                    new SelectListItem{ Text="2", Value = "2" },
                    new SelectListItem{ Text="3", Value = "3" },
-                 })
-                
+                 })*@
+                    }
             </div>
-            <div style="padding-left:200px">
+            @*<div style="padding-left:200px">
                 <input id="Search" type="submit" value="Buy" />
-            </div>
+            </div>*@
         </div>
     </div>
     <!-- /.row -->
@@ -57,14 +81,14 @@
         <div class="carousel slide" id="PeopleAlsoBought" data-ride="carousel" data-interval="0">
             <h2 style="padding-left:10px">People who bought This also bought</h2>
             <div class="carousel-inner">
-                @for (int i = 0; i < 9; i = i + 3)
+                @for (int i = 0; i < 8; i = i + 4)
                 {
                     if (i == 0)
                     {
                         <div class="item active">
-                            @for (int j = i; j < i + 3; j++)
+                            @for (int j = i; j < i + 4; j++)
                             {
-                                <div class="col-sm-4 col-lg-4 col-md-4">
+                                <div class="col-sm-3 col-lg-3 col-md-3">
                                     <div class="thumbnail">
                                         <a href="@Url.Action("About", "Home",new { id = Model.PeopleAlsoBought[j].ProductId })">
                                             <img src="data:image;base64,@System.Convert.ToBase64String(Model.PeopleAlsoBought[j].LargePhoto)" />
@@ -84,9 +108,9 @@
                     if (i != 0)
                     {
                         <div class="item">
-                            @for (int j = i; j < i + 3; j++)
+                            @for (int j = i; j < i + 4; j++)
                             {
-                                <div class="col-sm-4 col-lg-4 col-md-4">
+                                <div class="col-sm-3 col-lg-3 col-md-3">
                                     <div class="thumbnail">
 
                                         <a href="@Url.Action("About", "Home",new { id = Model.PeopleAlsoBought[j].ProductId })">
@@ -116,32 +140,6 @@
             </a>
         </div>
     </div>
-
-    @*<div class="row">
-        <div class="col-lg-12">
-            <h3 class="page-header">Related Items</h3>
-        </div>
-        <div class="col-sm-3 col-xs-6">
-            <a href="#">
-                <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
-            </a>
-        </div>
-        <div class="col-sm-3 col-xs-6">
-            <a href="#">
-                <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
-            </a>
-        </div>
-        <div class="col-sm-3 col-xs-6">
-            <a href="#">
-                <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
-            </a>
-        </div>
-        <div class="col-sm-3 col-xs-6">
-            <a href="#">
-                <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
-            </a>
-        </div>
-    </div>*@
     <!-- /.row -->
     <hr>
     <!-- Footer -->

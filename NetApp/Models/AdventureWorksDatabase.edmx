@@ -765,6 +765,11 @@ warning 6031: The column 'DocumentNode' on the table/view 'AdventureWorks2012.Pr
         <Function Name="uspGetProductDeatils" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ProductId" Type="int" Mode="In" />
         </Function>
+        <Function Name="uspInsertNewSaleItem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CustomerId" Type="int" Mode="In" />
+          <Parameter Name="ProductID" Type="int" Mode="In" />
+          <Parameter Name="Quantity" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="AdventureWorks2012ModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -1859,7 +1864,12 @@ warning 6031: The column 'DocumentNode' on the table/view 'AdventureWorks2012.Pr
           <FunctionImport Name="uspGetMpstPopularBikes" ReturnType="Collection(AdventureWorks2012Model.uspGetMpstPopularBikes_Result)" />
           <FunctionImport Name="uspGetMpstPopularClothing" ReturnType="Collection(AdventureWorks2012Model.uspGetMpstPopularClothing_Result)" />
           <FunctionImport Name="uspGetPeopleAlsoBought" ReturnType="Collection(AdventureWorks2012Model.uspGetPeopleAlsoBought_Result)">
-            <Parameter Name="ProductId" Mode="In" Type="Int32" />
+          <Parameter Name="ProductId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspInsertNewSaleItem">
+            <Parameter Name="CustomerId" Mode="In" Type="Int32" />
+            <Parameter Name="ProductID" Mode="In" Type="Int32" />
+            <Parameter Name="Quantity" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="uspGetProductDeatils_Result">
@@ -2406,6 +2416,7 @@ warning 6031: The column 'DocumentNode' on the table/view 'AdventureWorks2012.Pr
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspInsertNewSaleItem" FunctionName="AdventureWorks2012Model.Store.uspInsertNewSaleItem" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

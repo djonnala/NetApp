@@ -89,10 +89,25 @@ namespace NetApp.Models
             var productIdParameter = productId.HasValue ?
                 new ObjectParameter("ProductId", productId) :
                 new ObjectParameter("ProductId", typeof(int));
-
-            ((IObjectContextAdapter)this).ObjectContext.CommandTimeout = 180;
-
+    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspGetPeopleAlsoBought_Result>("uspGetPeopleAlsoBought", productIdParameter);
+        }
+    
+        public virtual int uspInsertNewSaleItem(Nullable<int> customerId, Nullable<int> productID, Nullable<int> quantity)
+        {
+            var customerIdParameter = customerId.HasValue ?
+                new ObjectParameter("CustomerId", customerId) :
+                new ObjectParameter("CustomerId", typeof(int));
+    
+            var productIDParameter = productID.HasValue ?
+                new ObjectParameter("ProductID", productID) :
+                new ObjectParameter("ProductID", typeof(int));
+    
+            var quantityParameter = quantity.HasValue ?
+                new ObjectParameter("Quantity", quantity) :
+                new ObjectParameter("Quantity", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("uspInsertNewSaleItem", customerIdParameter, productIDParameter, quantityParameter);
         }
     }
 }

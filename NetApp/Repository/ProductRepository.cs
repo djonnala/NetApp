@@ -9,6 +9,41 @@ namespace NetApp.Repository
     public class ProductRepository
     {
         AdventureWorksEntities db = new AdventureWorksEntities();
+
+        public List<SubCategoriesViewModel> GetTreeViewItems()
+        {
+            var tvr = new List<SubCategoriesViewModel>();
+            
+            var treeviewresult = (from a in db.ProductCategories
+                                  select new { a.Name, a.ProductCategoryID }).ToList();
+            for(int i=0;i<treeviewresult.Count;i++)
+            {
+                int value = treeviewresult[i].ProductCategoryID;
+                var subcategoryviewresult = (from a in db.ProductSubcategories
+                                             where a.ProductCategoryID == value
+                                             select a.Name).ToList();
+                var subtvr = new List<SubCategoriesViewModel>();
+                for (int j = 0; j < subcategoryviewresult.Count; j++)
+                    subtvr.Add(new SubCategoriesViewModel() { CategoryName = subcategoryviewresult[j] });
+
+                tvr.Add(new SubCategoriesViewModel() { CategoryName = treeviewresult[i].Name, CategoryId = treeviewresult[i].ProductCategoryID, subCategories = subtvr });
+            }
+            return tvr;
+        }
+
+        public List<HomeViewModel> GetSubTreeViewItems(int categoryid)
+        {
+            var tvr = new List<HomeViewModel>();
+            var subtreeviewresult = (from a in db.ProductSubcategories
+                                     where a.ProductCategoryID==categoryid
+                                  select a.Name).ToList();
+            for (int i = 0; i < subtreeviewresult.Count; i++)
+            {
+                tvr.Add(new HomeViewModel() { categories = subtreeviewresult[i] });
+            }
+            return tvr;
+        }
+
         public List<HomeViewModel> GetMostPopularItems()
         {
 
@@ -83,6 +118,12 @@ namespace NetApp.Repository
             return prodetails;
 
                          
+        }
+
+
+        public void InsertNewSaleItem(int customerId,int ProductId,int Quantity)
+        {
+            db.uspInsertNewSaleItem(customerId, ProductId, Quantity);
         }
 
     }

@@ -327,8 +327,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Images\cycles.jpg" />
-    <Content Include="Images\netapp.jpg" />
+    <Content Include="Images\image002.jpg" />
     <Content Include="Models\AdventureWorksDatabase.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>AdventureWorksDatabase.edmx</DependentUpon>
@@ -365,6 +364,7 @@
     <Content Include="Models\AdventureWorksDatabase.edmx.diagram">
       <DependentUpon>AdventureWorksDatabase.edmx</DependentUpon>
     </Content>
+    <Content Include="fonts\glyphicons-halflings-regular - Copy.woff" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -417,7 +417,7 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <None Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />

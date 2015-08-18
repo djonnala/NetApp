@@ -8,6 +8,13 @@ namespace NetApp.Models
 {
     public class HomeViewModel
     {
+
+        public string categories { get; set; }
+
+        public int productcategoryid { get; set; }
+
+      //  public string subcategories { get; set; }
+
         public int productId { get; set; }
 
         public string Name { get; set; }
@@ -31,5 +38,20 @@ namespace NetApp.Models
         public List<HomeViewModel> PopularBikes { get; set; }
 
         public List<HomeViewModel> PopularClothing { get; set; }
+
+        public List<SubCategoriesViewModel> Categories { get; set; }
+
+      //  public List<List<HomeViewModel>> SubCategories { get; set; }
     }
+
+    public class SubCategoriesViewModel
+    {
+        public string CategoryName { get; set; }
+
+        public int CategoryId { get; set; }
+
+        public List<SubCategoriesViewModel> subCategories { get; set; }
+    }
+
+
 }
