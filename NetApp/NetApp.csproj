@@ -295,6 +295,12 @@
     <Compile Include="Models\UnitMeasure.cs">
       <DependentUpon>AdventureWorksDatabase.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\uspGetBasedonYourPurchase_Result.cs">
+      <DependentUpon>AdventureWorksDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\uspGetMostPopularInUrArea_Result.cs">
+      <DependentUpon>AdventureWorksDatabase.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\uspGetMostPopularProducts_Result.cs">
       <DependentUpon>AdventureWorksDatabase.tt</DependentUpon>
     </Compile>

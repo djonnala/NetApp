@@ -17,7 +17,7 @@ namespace NetApp.Controllers
         {
             var productRepository = new ProductRepository();
 
-            var MostPopularItems = new HomeViewModel();
+            var HomeItems = new HomeViewModel();
 
             var tvr = productRepository.GetTreeViewItems();
             
@@ -28,16 +28,25 @@ namespace NetApp.Controllers
 
             var pc = productRepository.GetMostPopularClothing();
 
-            MostPopularItems.PopularClothing = pc;
-            
-            MostPopularItems.PopularBikes = pb;
+            var boyp = productRepository.BasedOnYourPurchase(11111);
 
-            MostPopularItems.Categories = tvr;
+            var mpa = productRepository.MostPopularInArea(11111);
 
-          
-           
-            MostPopularItems.modeldata = id;
-            return View(MostPopularItems);
+            HomeItems.MostPopularInArea = mpa;
+
+            HomeItems.BasedOnPurchase = boyp;
+
+
+            HomeItems.PopularClothing = pc;
+
+            HomeItems.PopularBikes = pb;
+
+            HomeItems.Categories = tvr;
+
+
+
+            HomeItems.modeldata = id;
+            return View(HomeItems);
         }
 
        

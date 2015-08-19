@@ -21,12 +21,6 @@ namespace NetApp.Models
 
         public decimal ListPrice { get; set; }
 
-        //public string ProductName { get; set; }
-
-        //public string ProductPrice { get; set; }
-
-        //public Image ProductImage { get; set; }
-
         public int ProductPhotoId { get; set; }
 
 
@@ -41,7 +35,9 @@ namespace NetApp.Models
 
         public List<SubCategoriesViewModel> Categories { get; set; }
 
-      //  public List<List<HomeViewModel>> SubCategories { get; set; }
+        public List<HomeViewModel> BasedOnPurchase { get; set; }
+
+        public List<HomeViewModel> MostPopularInArea { get; set; }
     }
 
     public class SubCategoriesViewModel

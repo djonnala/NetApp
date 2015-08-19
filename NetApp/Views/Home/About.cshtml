@@ -43,12 +43,7 @@
                 {
                 <b>Count: </b> 
                  @Html.HiddenFor(m => m.ProductId);
-                    @*@Html.HiddenFor(m => m.Name);
-                    @Html.HiddenFor(m => m.LargePhoto);
-                    @Html.HiddenFor(m => m.color);
-                    @Html.HiddenFor(m => m.size);
-                    @Html.HiddenFor(m => m.Weight);
-                    @Html.HiddenFor(m => m.listPrice);*@
+                    
 
                     @Html.HiddenFor(m => m.PeopleAlsoBought);
                     var listItems = new List<SelectListItem>()
@@ -60,18 +55,11 @@
 
                     @Html.DropDownListFor(m => m.quantity, listItems, string.Empty)
                 
-                    <button type="submit" value="Buy"></button>
-                @*@Html.DropDownList("Count", new List<SelectListItem>
-                {
-                   new SelectListItem{ Text="1", Value = "1" },
-                   new SelectListItem{ Text="2", Value = "2" },
-                   new SelectListItem{ Text="3", Value = "3" },
-                 })*@
+                    <button type="submit" value="Buy" >Buy</button>
+                
                     }
             </div>
-            @*<div style="padding-left:200px">
-                <input id="Search" type="submit" value="Buy" />
-            </div>*@
+            
         </div>
     </div>
     <!-- /.row -->

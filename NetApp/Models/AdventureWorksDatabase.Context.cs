@@ -109,5 +109,23 @@ namespace NetApp.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("uspInsertNewSaleItem", customerIdParameter, productIDParameter, quantityParameter);
         }
+    
+        public virtual ObjectResult<uspGetBasedonYourPurchase_Result> uspGetBasedonYourPurchase(Nullable<int> customerId)
+        {
+            var customerIdParameter = customerId.HasValue ?
+                new ObjectParameter("CustomerId", customerId) :
+                new ObjectParameter("CustomerId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspGetBasedonYourPurchase_Result>("uspGetBasedonYourPurchase", customerIdParameter);
+        }
+    
+        public virtual ObjectResult<uspGetMostPopularInUrArea_Result> uspGetMostPopularInUrArea(Nullable<int> customerId)
+        {
+            var customerIdParameter = customerId.HasValue ?
+                new ObjectParameter("CustomerId", customerId) :
+                new ObjectParameter("CustomerId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspGetMostPopularInUrArea_Result>("uspGetMostPopularInUrArea", customerIdParameter);
+        }
     }
 }

@@ -31,17 +31,27 @@ namespace NetApp.Repository
             return tvr;
         }
 
-        public List<HomeViewModel> GetSubTreeViewItems(int categoryid)
+       public List<HomeViewModel> BasedOnYourPurchase(int customerid)
         {
-            var tvr = new List<HomeViewModel>();
-            var subtreeviewresult = (from a in db.ProductSubcategories
-                                     where a.ProductCategoryID==categoryid
-                                  select a.Name).ToList();
-            for (int i = 0; i < subtreeviewresult.Count; i++)
+            var boyp = db.uspGetBasedonYourPurchase(customerid).ToList();
+            var hvm = new List<HomeViewModel>();
+            for(int i=0;i<10;i++)
             {
-                tvr.Add(new HomeViewModel() { categories = subtreeviewresult[i] });
+                hvm.Add(new HomeViewModel() { Name = boyp[i].Name, ListPrice = boyp[i].ListPrice, ThumbNailPhoto = boyp[i].LargePhoto, productId = boyp[i].ProductID });
             }
-            return tvr;
+            return hvm;
+        }
+
+
+        public List<HomeViewModel> MostPopularInArea(int customerid)
+        {
+            var mpa = db.uspGetBasedonYourPurchase(customerid).ToList();
+            var hvm = new List<HomeViewModel>();
+            for (int i = 0; i < 10; i++)
+            {
+                hvm.Add(new HomeViewModel() { Name = mpa[i].Name, ListPrice = mpa[i].ListPrice, ThumbNailPhoto = mpa[i].LargePhoto, productId = mpa[i].ProductID });
+            }
+            return hvm;
         }
 
         public List<HomeViewModel> GetMostPopularItems()
