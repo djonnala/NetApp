@@ -31,37 +31,37 @@ namespace NetApp.Repository
             return tvr;
         }
 
-       public List<HomeViewModel> BasedOnYourPurchase(int customerid)
+        public List<CarousalViewModel> BasedOnPurchase(int customerid)
         {
+            var bopmodel = new List<CarousalViewModel>();
             var boyp = db.uspGetBasedonYourPurchase(customerid).ToList();
-            var hvm = new List<HomeViewModel>();
-            for(int i=0;i<10;i++)
+            for(int i=0;i<12;i++)
             {
-                hvm.Add(new HomeViewModel() { Name = boyp[i].Name, ListPrice = boyp[i].ListPrice, ThumbNailPhoto = boyp[i].LargePhoto, productId = boyp[i].ProductID });
+                bopmodel.Add(new CarousalViewModel() { Name = boyp[i].Name, ListPrice = boyp[i].ListPrice, ProductID = boyp[i].ProductID, ProductPhoto = boyp[i].LargePhoto });
             }
-            return hvm;
+            return bopmodel;
         }
+        
 
-
-        public List<HomeViewModel> MostPopularInArea(int customerid)
+        public List<CarousalViewModel> MostPopularInArea(int customerid)
         {
-            var mpa = db.uspGetBasedonYourPurchase(customerid).ToList();
-            var hvm = new List<HomeViewModel>();
-            for (int i = 0; i < 10; i++)
+            var mpa = db.uspGetMostPopularInUrArea(customerid).ToList();
+            var hvm = new List<CarousalViewModel>();
+            for (int i = 0; i < 12; i++)
             {
-                hvm.Add(new HomeViewModel() { Name = mpa[i].Name, ListPrice = mpa[i].ListPrice, ThumbNailPhoto = mpa[i].LargePhoto, productId = mpa[i].ProductID });
+                hvm.Add(new CarousalViewModel() { Name = mpa[i].Name, ListPrice = mpa[i].ListPrice, ProductPhoto = mpa[i].LargePhoto, ProductID = mpa[i].ProductID });
             }
             return hvm;
         }
 
-        public List<HomeViewModel> GetMostPopularItems()
+        public List<CarousalViewModel> GetMostPopularItems()
         {
 
             var mpp = db.uspGetMostPopularProducts().ToList();
-            var hvm = new List<HomeViewModel>();
-            for(int i=0;i<10;i++)
+            var hvm = new List<CarousalViewModel>();
+            for(int i=0;i<12;i++)
             {
-                hvm.Add(new HomeViewModel() { Name = mpp[i].Name,ListPrice=mpp[1].ListPrice,ThumbNailPhoto=mpp[i].LargePhoto,productId=mpp[i].ProductID });
+                hvm.Add(new CarousalViewModel() { Name = mpp[i].Name,ListPrice=mpp[1].ListPrice, ProductPhoto = mpp[i].LargePhoto,ProductID=mpp[i].ProductID });
             }
             
             return hvm;
@@ -76,7 +76,7 @@ namespace NetApp.Repository
             var PAB = db.uspGetPeopleAlsoBought(productId).ToList();
             var pvm = new List<ProductViewModel>();
 
-            for(int i=0;i<10;i++)
+            for(int i=0;i<12;i++)
             {
                 pvm.Add(new ProductViewModel() { Name = PAB[i].Name, listPrice = PAB[i].ListPrice, LargePhoto = PAB[i].LargePhoto, ProductId = PAB[i].ProductID });
             }
@@ -84,24 +84,24 @@ namespace NetApp.Repository
             return pvm;
         }
 
-        public List<HomeViewModel> GetMostPopularBikes()
+        public List<CarousalViewModel> GetMostPopularBikes()
         {
             var mpb = db.uspGetMpstPopularBikes().ToList();
-            var hvm = new List<HomeViewModel>();
-            for(int i=0;i<10;i++)
+            var hvm = new List<CarousalViewModel>();
+            for(int i=0;i<12;i++)
             {
-                hvm.Add(new HomeViewModel() { Name = mpb[i].Name, ListPrice = mpb[i].ListPrice, ThumbNailPhoto = mpb[i].LargePhoto, productId = mpb[i].ProductID });
+                hvm.Add(new CarousalViewModel() { Name = mpb[i].Name, ListPrice = mpb[i].ListPrice, ProductPhoto = mpb[i].LargePhoto, ProductID = mpb[i].ProductID });
             }
             return hvm;
         }
 
-        public List<HomeViewModel> GetMostPopularClothing()
+        public List<CarousalViewModel> GetMostPopularClothing()
         {
             var mpb = db.uspGetMpstPopularClothing().ToList();
-            var hvm = new List<HomeViewModel>();
-            for (int i = 0; i < 10; i++)
+            var hvm = new List<CarousalViewModel>();
+            for (int i = 0; i < 12; i++)
             {
-                hvm.Add(new HomeViewModel() { Name = mpb[i].Name, ListPrice = mpb[i].ListPrice, ThumbNailPhoto = mpb[i].LargePhoto, productId = mpb[i].ProductID });
+                hvm.Add(new CarousalViewModel() { Name = mpb[i].Name, ListPrice = mpb[i].ListPrice, ProductPhoto = mpb[i].LargePhoto, ProductID = mpb[i].ProductID });
             }
             return hvm;
         }

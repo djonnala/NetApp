@@ -1866,12 +1866,6 @@ warning 6031: The column 'DocumentNode' on the table/view 'AdventureWorks2012.Pr
           <FunctionImport Name="uspGetProductDeatils" ReturnType="Collection(AdventureWorks2012Model.uspGetProductDeatils_Result)">
           <Parameter Name="ProductId" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="uspGetMostPopularProducts" ReturnType="Collection(AdventureWorks2012Model.uspGetMostPopularProducts_Result)" />
-          <FunctionImport Name="uspGetMpstPopularBikes" ReturnType="Collection(AdventureWorks2012Model.uspGetMpstPopularBikes_Result)" />
-          <FunctionImport Name="uspGetMpstPopularClothing" ReturnType="Collection(AdventureWorks2012Model.uspGetMpstPopularClothing_Result)" />
-          <FunctionImport Name="uspGetPeopleAlsoBought" ReturnType="Collection(AdventureWorks2012Model.uspGetPeopleAlsoBought_Result)">
-          <Parameter Name="ProductId" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="uspInsertNewSaleItem">
             <Parameter Name="CustomerId" Mode="In" Type="Int32" />
             <Parameter Name="ProductID" Mode="In" Type="Int32" />
@@ -1881,7 +1875,13 @@ warning 6031: The column 'DocumentNode' on the table/view 'AdventureWorks2012.Pr
           <Parameter Name="CustomerId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="uspGetMostPopularInUrArea" ReturnType="Collection(AdventureWorks2012Model.uspGetMostPopularInUrArea_Result)">
-            <Parameter Name="CustomerId" Mode="In" Type="Int32" />
+          <Parameter Name="CustomerId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetMostPopularProducts" ReturnType="Collection(AdventureWorks2012Model.uspGetMostPopularProducts_Result)" />
+          <FunctionImport Name="uspGetMpstPopularBikes" ReturnType="Collection(AdventureWorks2012Model.uspGetMpstPopularBikes_Result)" />
+          <FunctionImport Name="uspGetMpstPopularClothing" ReturnType="Collection(AdventureWorks2012Model.uspGetMpstPopularClothing_Result)" />
+          <FunctionImport Name="uspGetPeopleAlsoBought" ReturnType="Collection(AdventureWorks2012Model.uspGetPeopleAlsoBought_Result)">
+            <Parameter Name="ProductId" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="uspGetProductDeatils_Result">
@@ -1892,6 +1892,30 @@ warning 6031: The column 'DocumentNode' on the table/view 'AdventureWorks2012.Pr
           <Property Type="Decimal" Name="ListPrice" Nullable="false" Precision="19" />
           <Property Type="String" Name="Weight" Nullable="true" MaxLength="33" />
           <Property Type="String" Name="Description" Nullable="false" MaxLength="400" />
+          <Property Type="Binary" Name="LargePhoto" Nullable="true" />
+          <Property Type="Binary" Name="ThumbNailPhoto" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="uspGetBasedonYourPurchase_Result">
+          <Property Type="Int32" Name="ProductID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Color" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="Size" Nullable="true" MaxLength="5" />
+          <Property Type="Decimal" Name="ListPrice" Nullable="false" Precision="19" />
+          <Property Type="String" Name="Weight" Nullable="true" MaxLength="33" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="400" />
+          <Property Type="Binary" Name="LargePhoto" Nullable="true" />
+          <Property Type="Binary" Name="ThumbNailPhoto" Nullable="true" />
+          <Property Type="Int32" Name="SoldUnits" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="uspGetMostPopularInUrArea_Result">
+          <Property Type="Int32" Name="ProductID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Color" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="Size" Nullable="true" MaxLength="5" />
+          <Property Type="Decimal" Name="ListPrice" Nullable="false" Precision="19" />
+          <Property Type="String" Name="Weight" Nullable="true" MaxLength="33" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="400" />
+          <Property Type="Int32" Name="SoldUnits" Nullable="true" />
           <Property Type="Binary" Name="LargePhoto" Nullable="true" />
           <Property Type="Binary" Name="ThumbNailPhoto" Nullable="true" />
         </ComplexType>
@@ -1942,30 +1966,6 @@ warning 6031: The column 'DocumentNode' on the table/view 'AdventureWorks2012.Pr
           <Property Type="Binary" Name="LargePhoto" Nullable="true" />
           <Property Type="Binary" Name="ThumbNailPhoto" Nullable="true" />
           <Property Type="Int32" Name="SoldUnits" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="uspGetBasedonYourPurchase_Result">
-          <Property Type="Int32" Name="ProductID" Nullable="false" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Color" Nullable="true" MaxLength="15" />
-          <Property Type="String" Name="Size" Nullable="true" MaxLength="5" />
-          <Property Type="Decimal" Name="ListPrice" Nullable="false" Precision="19" />
-          <Property Type="String" Name="Weight" Nullable="true" MaxLength="33" />
-          <Property Type="String" Name="Description" Nullable="false" MaxLength="400" />
-          <Property Type="Binary" Name="LargePhoto" Nullable="true" />
-          <Property Type="Binary" Name="ThumbNailPhoto" Nullable="true" />
-          <Property Type="Int32" Name="SoldUnits" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="uspGetMostPopularInUrArea_Result">
-          <Property Type="Int32" Name="ProductID" Nullable="false" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Color" Nullable="true" MaxLength="15" />
-          <Property Type="String" Name="Size" Nullable="true" MaxLength="5" />
-          <Property Type="Decimal" Name="ListPrice" Nullable="false" Precision="19" />
-          <Property Type="String" Name="Weight" Nullable="true" MaxLength="33" />
-          <Property Type="String" Name="Description" Nullable="false" MaxLength="400" />
-          <Property Type="Int32" Name="SoldUnits" Nullable="true" />
-          <Property Type="Binary" Name="LargePhoto" Nullable="true" />
-          <Property Type="Binary" Name="ThumbNailPhoto" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2388,6 +2388,39 @@ warning 6031: The column 'DocumentNode' on the table/view 'AdventureWorks2012.Pr
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspInsertNewSaleItem" FunctionName="AdventureWorks2012Model.Store.uspInsertNewSaleItem" />
+          <FunctionImportMapping FunctionImportName="uspGetBasedonYourPurchase" FunctionName="AdventureWorks2012Model.Store.uspGetBasedonYourPurchase">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AdventureWorks2012Model.uspGetBasedonYourPurchase_Result">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="ListPrice" ColumnName="ListPrice" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="LargePhoto" ColumnName="LargePhoto" />
+                <ScalarProperty Name="ThumbNailPhoto" ColumnName="ThumbNailPhoto" />
+                <ScalarProperty Name="SoldUnits" ColumnName="SoldUnits" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspGetMostPopularInUrArea" FunctionName="AdventureWorks2012Model.Store.uspGetMostPopularInUrArea">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AdventureWorks2012Model.uspGetMostPopularInUrArea_Result">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="ListPrice" ColumnName="ListPrice" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="SoldUnits" ColumnName="SoldUnits" />
+                <ScalarProperty Name="LargePhoto" ColumnName="LargePhoto" />
+                <ScalarProperty Name="ThumbNailPhoto" ColumnName="ThumbNailPhoto" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="uspGetMostPopularProducts" FunctionName="AdventureWorks2012Model.Store.uspGetMostPopularProducts">
             <ResultMapping>
               <ComplexTypeMapping TypeName="AdventureWorks2012Model.uspGetMostPopularProducts_Result">
@@ -2449,39 +2482,6 @@ warning 6031: The column 'DocumentNode' on the table/view 'AdventureWorks2012.Pr
                 <ScalarProperty Name="LargePhoto" ColumnName="LargePhoto" />
                 <ScalarProperty Name="ThumbNailPhoto" ColumnName="ThumbNailPhoto" />
                 <ScalarProperty Name="SoldUnits" ColumnName="SoldUnits" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="uspInsertNewSaleItem" FunctionName="AdventureWorks2012Model.Store.uspInsertNewSaleItem" />
-          <FunctionImportMapping FunctionImportName="uspGetBasedonYourPurchase" FunctionName="AdventureWorks2012Model.Store.uspGetBasedonYourPurchase">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="AdventureWorks2012Model.uspGetBasedonYourPurchase_Result">
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Color" ColumnName="Color" />
-                <ScalarProperty Name="Size" ColumnName="Size" />
-                <ScalarProperty Name="ListPrice" ColumnName="ListPrice" />
-                <ScalarProperty Name="Weight" ColumnName="Weight" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="LargePhoto" ColumnName="LargePhoto" />
-                <ScalarProperty Name="ThumbNailPhoto" ColumnName="ThumbNailPhoto" />
-                <ScalarProperty Name="SoldUnits" ColumnName="SoldUnits" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="uspGetMostPopularInUrArea" FunctionName="AdventureWorks2012Model.Store.uspGetMostPopularInUrArea">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="AdventureWorks2012Model.uspGetMostPopularInUrArea_Result">
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Color" ColumnName="Color" />
-                <ScalarProperty Name="Size" ColumnName="Size" />
-                <ScalarProperty Name="ListPrice" ColumnName="ListPrice" />
-                <ScalarProperty Name="Weight" ColumnName="Weight" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="SoldUnits" ColumnName="SoldUnits" />
-                <ScalarProperty Name="LargePhoto" ColumnName="LargePhoto" />
-                <ScalarProperty Name="ThumbNailPhoto" ColumnName="ThumbNailPhoto" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

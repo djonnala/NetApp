@@ -28,7 +28,7 @@ namespace NetApp.Controllers
 
             var pc = productRepository.GetMostPopularClothing();
 
-            var boyp = productRepository.BasedOnYourPurchase(11111);
+            var boyp = productRepository.BasedOnPurchase(11111);
 
             var mpa = productRepository.MostPopularInArea(11111);
 
@@ -72,7 +72,7 @@ namespace NetApp.Controllers
 
             pvm.PeopleAlsoBought = gpab;
             var idprod = productRepository.GetProductDetails(id);
-           // idprod.LargePhotodisplay = byteArraytoImage(idprod.LargePhoto);
+           
             pvm.LargePhoto = idprod.LargePhoto;
             pvm.listPrice = idprod.listPrice;
             pvm.Name = idprod.Name;

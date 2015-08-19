@@ -8,36 +8,17 @@ namespace NetApp.Models
 {
     public class HomeViewModel
     {
+        public List<CarousalViewModel> modeldata { get; set; }
 
-        public string categories { get; set; }
+        public List<CarousalViewModel> PopularBikes { get; set; }
 
-        public int productcategoryid { get; set; }
-
-      //  public string subcategories { get; set; }
-
-        public int productId { get; set; }
-
-        public string Name { get; set; }
-
-        public decimal ListPrice { get; set; }
-
-        public int ProductPhotoId { get; set; }
-
-
-        public byte[] ThumbNailPhoto { get; set; }
-
-
-        public List<HomeViewModel> modeldata { get; set; }
-
-        public List<HomeViewModel> PopularBikes { get; set; }
-
-        public List<HomeViewModel> PopularClothing { get; set; }
+        public List<CarousalViewModel> PopularClothing { get; set; }
 
         public List<SubCategoriesViewModel> Categories { get; set; }
 
-        public List<HomeViewModel> BasedOnPurchase { get; set; }
+        public List<CarousalViewModel> BasedOnPurchase { get; set; }
 
-        public List<HomeViewModel> MostPopularInArea { get; set; }
+        public List<CarousalViewModel> MostPopularInArea { get; set; }
     }
 
     public class SubCategoriesViewModel
@@ -49,5 +30,17 @@ namespace NetApp.Models
         public List<SubCategoriesViewModel> subCategories { get; set; }
     }
 
+    public class CarousalViewModel
+    {
+        public string Name { get; set; }
+
+        public decimal ListPrice { get; set; }
+
+        public byte[] ProductPhoto { get; set; }
+
+        public int ProductID { get; set; }
+    }
+
+    
 
 }

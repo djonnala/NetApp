@@ -53,7 +53,7 @@
                         <div class="carousel slide" id="MostPopularitems" data-ride="carousel" data-interval="0">
                             <h2 style="padding-left:10px">Most Popular Items</h2>
                             <div class="carousel-inner">
-                                @for (int i = 0; i < 8; i = i + 4)
+                                @for (int i = 0; i < 12; i = i + 4)
                                 {
                                     if (i == 0)
                                     {
@@ -62,13 +62,13 @@
                                             {
                                                 <div class="col-sm-3 col-lg-3 col-md-3">
                                                     <div class="thumbnail">
-                                                        <a href="@Url.Action("About", "Home",new { id = Model.modeldata[j].productId })">
-                                                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.modeldata[j].ThumbNailPhoto)" />
+                                                        <a href="@Url.Action("About", "Home",new { id = Model.modeldata[j].ProductID })">
+                                                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.modeldata[j].ProductPhoto)" />
                                                         </a>
                                                         <div class="caption">
                                                             <h4 class="pull-right">$@Model.modeldata[j].ListPrice.ToString("0.00")</h4>
                                                             <h4>
-                                                                <a href="@Url.Action("About", "Home",new { id = Model.modeldata[j].productId })">@Model.modeldata[j].Name</a>
+                                                                <a href="@Url.Action("About", "Home",new { id = Model.modeldata[j].ProductID })">@Model.modeldata[j].Name</a>
                                                             </h4>
 
                                                         </div>
@@ -85,13 +85,13 @@
                                             {
                                                 <div class="col-sm-3 col-lg-3 col-md-3">
                                                     <div class="thumbnail">
-                                                        <a href="@Url.Action("About", "Home",new { id = Model.modeldata[j].ProductPhotoId })">
-                                                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.modeldata[j].ThumbNailPhoto)" />
+                                                        <a href="@Url.Action("About", "Home",new { id = Model.modeldata[j].ProductID })">
+                                                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.modeldata[j].ProductPhoto)" />
                                                         </a>
                                                         <div class="caption">
                                                             <h4 class="pull-right">$@Model.modeldata[j].ListPrice.ToString("0.00")</h4>
                                                             <h4>
-                                                                <a href="@Url.Action("About", "Home",new { id = Model.modeldata[j].productId })">@Model.modeldata[j].Name</a>
+                                                                <a href="@Url.Action("About", "Home",new { id = Model.modeldata[j].ProductID })">@Model.modeldata[j].Name</a>
                                                             </h4>
 
                                                         </div>
@@ -118,7 +118,7 @@
                         <div class="carousel slide" id="Recommended" data-ride="carousel" data-interval="0">
                             <h2 style="padding-left:10px">MostPopular Bikes</h2>
                             <div class="carousel-inner">
-                                @for (int i = 0; i < 8; i = i + 4)
+                                @for (int i = 0; i < 12; i = i + 4)
                                 {
                                     if (i == 0)
                                     {
@@ -127,13 +127,13 @@
                                             {
                                                 <div class="col-sm-3 col-lg-3 col-md-3">
                                                     <div class="thumbnail">
-                                                        <a href="@Url.Action("About", "Home",new { id = Model.PopularBikes[j].productId })">
-                                                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.PopularBikes[j].ThumbNailPhoto)" />
+                                                        <a href="@Url.Action("About", "Home",new { id = Model.PopularBikes[j].ProductID })">
+                                                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.PopularBikes[j].ProductPhoto)" />
                                                         </a>
                                                         <div class="caption">
                                                             <h4 class="pull-right">$@Model.PopularBikes[j].ListPrice.ToString("0.00")</h4>
                                                             <h4>
-                                                                <a href="@Url.Action("About", "Home",new { id = Model.PopularBikes[j].productId })">@Model.PopularBikes[j].Name</a>
+                                                                <a href="@Url.Action("About", "Home",new { id = Model.PopularBikes[j].ProductID })">@Model.PopularBikes[j].Name</a>
                                                             </h4>
                                                         </div>
 
@@ -150,13 +150,13 @@
                                                 <div class="col-sm-3 col-lg-3 col-md-3">
                                                     <div class="thumbnail">
 
-                                                        <a href="@Url.Action("About", "Home",new { id = Model.PopularBikes[j].productId })">
-                                                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.PopularBikes[j].ThumbNailPhoto)" />
+                                                        <a href="@Url.Action("About", "Home",new { id = Model.PopularBikes[j].ProductID })">
+                                                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.PopularBikes[j].ProductPhoto)" />
                                                         </a>
                                                         <div class="caption">
                                                             <h4 class="pull-right">$@Model.PopularBikes[j].ListPrice.ToString("0.00")</h4>
                                                             <h4>
-                                                                <a href="@Url.Action("About", "Home",new { id = Model.PopularBikes[j].productId })">@Model.PopularBikes[j].Name</a>
+                                                                <a href="@Url.Action("About", "Home",new { id = Model.PopularBikes[j].ProductID })">@Model.PopularBikes[j].Name</a>
                                                             </h4>
 
                                                         </div>
@@ -183,7 +183,7 @@
                         <div class="carousel slide" id="MostPopularClothing" data-ride="carousel" data-interval="0">
                             <h2 style="padding-left:10px">Most Popular Clothing</h2>
                             <div class="carousel-inner">
-                                @for (int i = 0; i < 8; i = i + 4)
+                                @for (int i = 0; i < 12; i = i + 4)
                                 {
                                     if (i == 0)
                                     {
@@ -192,13 +192,13 @@
                                             {
                                                 <div class="col-sm-3 col-lg-3 col-md-3">
                                                     <div class="thumbnail">
-                                                        <a href="@Url.Action("About", "Home",new { id = Model.PopularClothing[j].productId })">
-                                                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.PopularClothing[j].ThumbNailPhoto)" />
+                                                        <a href="@Url.Action("About", "Home",new { id = Model.PopularClothing[j].ProductID })">
+                                                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.PopularClothing[j].ProductPhoto)" />
                                                         </a>
                                                         <div class="caption">
                                                             <h4 class="pull-right">$@Model.PopularClothing[j].ListPrice.ToString("0.00")</h4>
                                                             <h4>
-                                                                <a href="@Url.Action("About", "Home",new { id = Model.PopularClothing[j].productId })">@Model.PopularClothing[j].Name</a>
+                                                                <a href="@Url.Action("About", "Home",new { id = Model.PopularClothing[j].ProductID })">@Model.PopularClothing[j].Name</a>
                                                             </h4>
                                                         </div>
 
@@ -215,13 +215,13 @@
                                                 <div class="col-sm-3 col-lg-3 col-md-3">
                                                     <div class="thumbnail">
 
-                                                        <a href="@Url.Action("About", "Home",new { id = Model.PopularClothing[j].productId })">
-                                                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.PopularClothing[j].ThumbNailPhoto)" />
+                                                        <a href="@Url.Action("About", "Home",new { id = Model.PopularClothing[j].ProductID })">
+                                                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.PopularClothing[j].ProductPhoto)" />
                                                         </a>
                                                         <div class="caption">
                                                             <h4 class="pull-right">$@Model.PopularClothing[j].ListPrice.ToString("0.00")</h4>
                                                             <h4>
-                                                                <a href="@Url.Action("About", "Home",new { id = Model.PopularClothing[j].productId })">@Model.PopularClothing[j].Name</a>
+                                                                <a href="@Url.Action("About", "Home",new { id = Model.PopularClothing[j].ProductID })">@Model.PopularClothing[j].Name</a>
                                                             </h4>
 
                                                         </div>
@@ -251,7 +251,7 @@
                         <div class="carousel slide" id="BasedOnYourPurchase" data-ride="carousel" data-interval="0">
                             <h2 style="padding-left:10px">Based On Your Purchase</h2>
                             <div class="carousel-inner">
-                                @for (int i = 0; i < 8; i = i + 4)
+                                @for (int i = 0; i < 12; i = i + 4)
                                 {
                                     if (i == 0)
                                     {
@@ -260,13 +260,13 @@
                                             {
                                                 <div class="col-sm-3 col-lg-3 col-md-3">
                                                     <div class="thumbnail">
-                                                        <a href="@Url.Action("About", "Home",new { id = Model.BasedOnPurchase[j].productId })">
-                                                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.BasedOnPurchase[j].ThumbNailPhoto)" />
+                                                        <a href="@Url.Action("About", "Home",new { id = Model.BasedOnPurchase[j].ProductID })">
+                                                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.BasedOnPurchase[j].ProductPhoto)" />
                                                         </a>
                                                         <div class="caption">
                                                             <h4 class="pull-right">$@Model.BasedOnPurchase[j].ListPrice.ToString("0.00")</h4>
                                                             <h4>
-                                                                <a href="@Url.Action("About", "Home",new { id = Model.BasedOnPurchase[j].productId })">@Model.BasedOnPurchase[j].Name</a>
+                                                                <a href="@Url.Action("About", "Home",new { id = Model.BasedOnPurchase[j].ProductID })">@Model.BasedOnPurchase[j].Name</a>
                                                             </h4>
                                                         </div>
 
@@ -283,13 +283,13 @@
                                                 <div class="col-sm-3 col-lg-3 col-md-3">
                                                     <div class="thumbnail">
 
-                                                        <a href="@Url.Action("About", "Home",new { id = Model.BasedOnPurchase[j].productId })">
-                                                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.BasedOnPurchase[j].ThumbNailPhoto)" />
+                                                        <a href="@Url.Action("About", "Home",new { id = Model.BasedOnPurchase[j].ProductID })">
+                                                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.BasedOnPurchase[j].ProductPhoto)" />
                                                         </a>
                                                         <div class="caption">
                                                             <h4 class="pull-right">$@Model.BasedOnPurchase[j].ListPrice.ToString("0.00")</h4>
                                                             <h4>
-                                                                <a href="@Url.Action("About", "Home",new { id = Model.BasedOnPurchase[j].productId })">@Model.BasedOnPurchase[j].Name</a>
+                                                                <a href="@Url.Action("About", "Home",new { id = Model.BasedOnPurchase[j].ProductID })">@Model.BasedOnPurchase[j].Name</a>
                                                             </h4>
 
                                                         </div>
@@ -318,7 +318,7 @@
                         <div class="carousel slide" id="PopularinyourArea" data-ride="carousel" data-interval="0">
                             <h2 style="padding-left:10px">Popular in your Area</h2>
                             <div class="carousel-inner">
-                                @for (int i = 0; i < 8; i = i + 4)
+                                @for (int i = 0; i < 12; i = i + 4)
                                 {
                                     if (i == 0)
                                     {
@@ -327,13 +327,13 @@
                                             {
                                                 <div class="col-sm-3 col-lg-3 col-md-3">
                                                     <div class="thumbnail">
-                                                        <a href="@Url.Action("About", "Home",new { id = Model.MostPopularInArea[j].productId })">
-                                                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.MostPopularInArea[j].ThumbNailPhoto)" />
+                                                        <a href="@Url.Action("About", "Home",new { id = Model.MostPopularInArea[j].ProductID })">
+                                                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.MostPopularInArea[j].ProductPhoto)" />
                                                         </a>
                                                         <div class="caption">
                                                             <h4 class="pull-right">$@Model.MostPopularInArea[j].ListPrice.ToString("0.00")</h4>
                                                             <h4>
-                                                                <a href="@Url.Action("About", "Home",new { id = Model.BasedOnPurchase[j].productId })">@Model.MostPopularInArea[j].Name</a>
+                                                                <a href="@Url.Action("About", "Home",new { id = Model.MostPopularInArea[j].ProductID })">@Model.MostPopularInArea[j].Name</a>
                                                             </h4>
                                                         </div>
 
@@ -350,13 +350,13 @@
                                                 <div class="col-sm-3 col-lg-3 col-md-3">
                                                     <div class="thumbnail">
 
-                                                        <a href="@Url.Action("About", "Home",new { id = Model.MostPopularInArea[j].productId })">
-                                                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.MostPopularInArea[j].ThumbNailPhoto)" />
+                                                        <a href="@Url.Action("About", "Home",new { id = Model.MostPopularInArea[j].ProductID })">
+                                                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.MostPopularInArea[j].ProductPhoto)" />
                                                         </a>
                                                         <div class="caption">
                                                             <h4 class="pull-right">$@Model.MostPopularInArea[j].ListPrice.ToString("0.00")</h4>
                                                             <h4>
-                                                                <a href="@Url.Action("About", "Home",new { id = Model.MostPopularInArea[j].productId })">@Model.MostPopularInArea[j].Name</a>
+                                                                <a href="@Url.Action("About", "Home",new { id = Model.MostPopularInArea[j].ProductID })">@Model.MostPopularInArea[j].Name</a>
                                                             </h4>
 
                                                         </div>

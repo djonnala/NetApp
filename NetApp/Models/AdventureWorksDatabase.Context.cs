@@ -69,30 +69,6 @@ namespace NetApp.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspGetProductDeatils_Result>("uspGetProductDeatils", productIdParameter);
         }
     
-        public virtual ObjectResult<uspGetMostPopularProducts_Result> uspGetMostPopularProducts()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspGetMostPopularProducts_Result>("uspGetMostPopularProducts");
-        }
-    
-        public virtual ObjectResult<uspGetMpstPopularBikes_Result> uspGetMpstPopularBikes()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspGetMpstPopularBikes_Result>("uspGetMpstPopularBikes");
-        }
-    
-        public virtual ObjectResult<uspGetMpstPopularClothing_Result> uspGetMpstPopularClothing()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspGetMpstPopularClothing_Result>("uspGetMpstPopularClothing");
-        }
-    
-        public virtual ObjectResult<uspGetPeopleAlsoBought_Result> uspGetPeopleAlsoBought(Nullable<int> productId)
-        {
-            var productIdParameter = productId.HasValue ?
-                new ObjectParameter("ProductId", productId) :
-                new ObjectParameter("ProductId", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspGetPeopleAlsoBought_Result>("uspGetPeopleAlsoBought", productIdParameter);
-        }
-    
         public virtual int uspInsertNewSaleItem(Nullable<int> customerId, Nullable<int> productID, Nullable<int> quantity)
         {
             var customerIdParameter = customerId.HasValue ?
@@ -126,6 +102,30 @@ namespace NetApp.Models
                 new ObjectParameter("CustomerId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspGetMostPopularInUrArea_Result>("uspGetMostPopularInUrArea", customerIdParameter);
+        }
+    
+        public virtual ObjectResult<uspGetMostPopularProducts_Result> uspGetMostPopularProducts()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspGetMostPopularProducts_Result>("uspGetMostPopularProducts");
+        }
+    
+        public virtual ObjectResult<uspGetMpstPopularBikes_Result> uspGetMpstPopularBikes()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspGetMpstPopularBikes_Result>("uspGetMpstPopularBikes");
+        }
+    
+        public virtual ObjectResult<uspGetMpstPopularClothing_Result> uspGetMpstPopularClothing()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspGetMpstPopularClothing_Result>("uspGetMpstPopularClothing");
+        }
+    
+        public virtual ObjectResult<uspGetPeopleAlsoBought_Result> uspGetPeopleAlsoBought(Nullable<int> productId)
+        {
+            var productIdParameter = productId.HasValue ?
+                new ObjectParameter("ProductId", productId) :
+                new ObjectParameter("ProductId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspGetPeopleAlsoBought_Result>("uspGetPeopleAlsoBought", productIdParameter);
         }
     }
 }
