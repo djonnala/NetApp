@@ -57,7 +57,7 @@ namespace NetApp.Controllers
             AdventureWorksEntities db = new AdventureWorksEntities();
             var result = (from b in db.Products
                           where b.Name.Contains(term)
-                          select b.Name).ToList();
+                          select new { b.Name,b.ProductID }).ToList();
             return Json(result, JsonRequestBehavior.AllowGet);
 
         }
