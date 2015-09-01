@@ -109,14 +109,22 @@ namespace NetApp.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspGetMostPopularProducts_Result>("uspGetMostPopularProducts");
         }
     
-        public virtual ObjectResult<uspGetMpstPopularBikes_Result> uspGetMpstPopularBikes()
+        public virtual ObjectResult<uspGetMpstPopularBikes_Result> uspGetMpstPopularBikes(Nullable<int> customerId)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspGetMpstPopularBikes_Result>("uspGetMpstPopularBikes");
+            var customerIdParameter = customerId.HasValue ?
+                new ObjectParameter("CustomerId", customerId) :
+                new ObjectParameter("CustomerId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspGetMpstPopularBikes_Result>("uspGetMpstPopularBikes", customerIdParameter);
         }
     
-        public virtual ObjectResult<uspGetMpstPopularClothing_Result> uspGetMpstPopularClothing()
+        public virtual ObjectResult<uspGetMpstPopularClothing_Result> uspGetMpstPopularClothing(Nullable<int> customerId)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspGetMpstPopularClothing_Result>("uspGetMpstPopularClothing");
+            var customerIdParameter = customerId.HasValue ?
+                new ObjectParameter("CustomerId", customerId) :
+                new ObjectParameter("CustomerId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspGetMpstPopularClothing_Result>("uspGetMpstPopularClothing", customerIdParameter);
         }
     
         public virtual ObjectResult<uspGetPeopleAlsoBought_Result> uspGetPeopleAlsoBought(Nullable<int> productId)

@@ -7,46 +7,58 @@ using NetApp.Models;
 using NetApp.Repository;
 using System.Drawing;
 using System.IO;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
 
 namespace NetApp.Controllers
 {
     public class HomeController : Controller
     {
         [HttpGet]
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            var productRepository = new ProductRepository();
+            if (User.Identity.GetUserId() != null)
+            {
+                var productRepository = new ProductRepository();
 
-            var HomeItems = new HomeViewModel();
+                var HomeItems = new HomeViewModel();
 
-            var tvr = productRepository.GetTreeViewItems();
-            
-
-            var id = productRepository.GetMostPopularItems();
-
-            var pb = productRepository.GetMostPopularBikes();
-
-            var pc = productRepository.GetMostPopularClothing();
-
-            var boyp = productRepository.BasedOnPurchase(11111);
-
-            var mpa = productRepository.MostPopularInArea(11111);
-
-            HomeItems.MostPopularInArea = mpa;
-
-            HomeItems.BasedOnPurchase = boyp;
+                var tvr = await productRepository.GetTreeViewItems();
 
 
-            HomeItems.PopularClothing = pc;
+                var id = productRepository.GetMostPopularItems();
 
-            HomeItems.PopularBikes = pb;
+                var pb = productRepository.GetMostPopularBikes(11111);
 
-            HomeItems.Categories = tvr;
+                var pc = productRepository.GetMostPopularClothing(11111);
+
+                var boyp = productRepository.BasedOnPurchase(11111);
+
+                var mpa = productRepository.MostPopularInArea(11111);
 
 
 
-            HomeItems.modeldata = id;
-            return View(HomeItems);
+                HomeItems.MostPopularInArea = mpa;
+
+                HomeItems.BasedOnPurchase = boyp;
+
+
+                HomeItems.PopularClothing = pc;
+
+                HomeItems.PopularBikes = pb;
+
+                HomeItems.Categories = tvr;
+
+
+
+                HomeItems.modeldata = id;
+
+                return View(HomeItems);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
         }
 
        

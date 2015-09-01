@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using NetApp.Models;
+using System.Threading.Tasks;
 
 namespace NetApp.Repository
 {
@@ -10,11 +11,12 @@ namespace NetApp.Repository
     {
         AdventureWorksEntities db = new AdventureWorksEntities();
 
-        public List<SubCategoriesViewModel> GetTreeViewItems()
+        
+        public async Task<List<SubCategoriesViewModel>> GetTreeViewItems()
         {
             var tvr = new List<SubCategoriesViewModel>();
             
-            var treeviewresult = (from a in db.ProductCategories
+            var treeviewresult =  (from a in db.ProductCategories
                                   select new { a.Name, a.ProductCategoryID }).ToList();
             for(int i=0;i<treeviewresult.Count;i++)
             {
@@ -34,12 +36,12 @@ namespace NetApp.Repository
         public List<CarousalViewModel> BasedOnPurchase(int customerid)
         {
             var bopmodel = new List<CarousalViewModel>();
-            var boyp = db.uspGetBasedonYourPurchase(customerid).ToList();
+            var boyp =  db.uspGetBasedonYourPurchase(customerid).ToList() ;
             for(int i=0;i<12;i++)
             {
                 bopmodel.Add(new CarousalViewModel() { Name = boyp[i].Name, ListPrice = boyp[i].ListPrice, ProductID = boyp[i].ProductID, ProductPhoto = boyp[i].LargePhoto });
             }
-            return bopmodel;
+            return  bopmodel;
         }
         
 
@@ -75,19 +77,27 @@ namespace NetApp.Repository
             
             var PAB = db.uspGetPeopleAlsoBought(productId).ToList();
             var pvm = new List<ProductViewModel>();
-            if(PAB.Count>=12)
-            { }
-            for(int i=0;i<12;i++)
+            if (PAB.Count >= 12)
             {
-                pvm.Add(new ProductViewModel() { Name = PAB[i].Name, listPrice = PAB[i].ListPrice, LargePhoto = PAB[i].LargePhoto, ProductId = PAB[i].ProductID });
+                for (int i = 0; i < 12; i++)
+                {
+                    pvm.Add(new ProductViewModel() { Name = PAB[i].Name, listPrice = PAB[i].ListPrice, LargePhoto = PAB[i].LargePhoto, ProductId = PAB[i].ProductID });
+                }
+            }
+            else
+            {
+                for(int i = 0; i < PAB.Count; i++)
+                {
+                    pvm.Add(new ProductViewModel() { Name = PAB[i].Name, listPrice = PAB[i].ListPrice, LargePhoto = PAB[i].LargePhoto, ProductId = PAB[i].ProductID });
+                }
             }
 
             return pvm;
         }
 
-        public List<CarousalViewModel> GetMostPopularBikes()
+        public List<CarousalViewModel> GetMostPopularBikes(int customerid)
         {
-            var mpb = db.uspGetMpstPopularBikes().ToList();
+            var mpb = db.uspGetMpstPopularBikes(customerid).ToList();
             var hvm = new List<CarousalViewModel>();
             for(int i=0;i<12;i++)
             {
@@ -96,9 +106,9 @@ namespace NetApp.Repository
             return hvm;
         }
 
-        public List<CarousalViewModel> GetMostPopularClothing()
+        public List<CarousalViewModel> GetMostPopularClothing(int customerid)
         {
-            var mpb = db.uspGetMpstPopularClothing().ToList();
+            var mpb = db.uspGetMpstPopularClothing(customerid).ToList();
             var hvm = new List<CarousalViewModel>();
             for (int i = 0; i < 12; i++)
             {

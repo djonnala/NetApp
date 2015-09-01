@@ -1,5 +1,13 @@
 ﻿@using NetApp.Models
 @model LoginViewModel
+
+
+
+<link rel="stylesheet"
+      href="http://code.jquery.com/ui/1.9.0/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> 
+
 @{
     ViewBag.Title = "Log in";
 }
@@ -51,13 +59,14 @@
             }
         </section>
     </div>
-    <div class="col-md-4">
+    @*<div class="col-md-4">
         <section id="socialLoginForm">
             @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
         </section>
-    </div>
+    </div>*@
 </div>
 
 @section Scripts {
+
     @Scripts.Render("~/bundles/jqueryval")
 }

@@ -763,8 +763,12 @@ warning 6031: The column 'DocumentNode' on the table/view 'AdventureWorks2012.Pr
           <Parameter Name="CustomerId" Type="int" Mode="In" />
         </Function>
         <Function Name="uspGetMostPopularProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="uspGetMpstPopularBikes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="uspGetMpstPopularClothing" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="uspGetMpstPopularBikes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CustomerId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetMpstPopularClothing" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CustomerId" Type="int" Mode="In" />
+        </Function>
         <Function Name="uspGetPeopleAlsoBought" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ProductId" Type="int" Mode="In" />
         </Function>
@@ -1878,10 +1882,14 @@ warning 6031: The column 'DocumentNode' on the table/view 'AdventureWorks2012.Pr
           <Parameter Name="CustomerId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="uspGetMostPopularProducts" ReturnType="Collection(AdventureWorks2012Model.uspGetMostPopularProducts_Result)" />
-          <FunctionImport Name="uspGetMpstPopularBikes" ReturnType="Collection(AdventureWorks2012Model.uspGetMpstPopularBikes_Result)" />
-          <FunctionImport Name="uspGetMpstPopularClothing" ReturnType="Collection(AdventureWorks2012Model.uspGetMpstPopularClothing_Result)" />
+          <FunctionImport Name="uspGetMpstPopularBikes" ReturnType="Collection(AdventureWorks2012Model.uspGetMpstPopularBikes_Result)" >
+            <Parameter Name="CustomerId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetMpstPopularClothing" ReturnType="Collection(AdventureWorks2012Model.uspGetMpstPopularClothing_Result)" >
+            <Parameter Name="CustomerId" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="uspGetPeopleAlsoBought" ReturnType="Collection(AdventureWorks2012Model.uspGetPeopleAlsoBought_Result)">
-            <Parameter Name="ProductId" Mode="In" Type="Int32" />
+          <Parameter Name="ProductId" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="uspGetProductDeatils_Result">
