@@ -118,7 +118,7 @@
                         <div class="carousel slide" id="Recommended" data-ride="carousel" data-interval="0">
                             <h2 style="padding-left:10px">MostPopular Bikes</h2>
                             <div class="carousel-inner">
-                                @for (int i = 0; i < 12; i = i + 4)
+                                @for (int i = 0; i < Model.PopularBikes.Count; i = i + 4)
                                 {
                                     if (i == 0)
                                     {

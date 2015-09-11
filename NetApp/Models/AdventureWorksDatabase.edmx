@@ -102,6 +102,13 @@
           <Property Name="ErrorLine" Type="int" />
           <Property Name="ErrorMessage" Type="nvarchar" MaxLength="4000" Nullable="false" />
         </EntityType>
+        <EntityType Name="GetCustomerID">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CustomerID" Type="int" />
+        </EntityType>
         <EntityType Name="BillOfMaterials">
           <Key>
             <PropertyRef Name="BillOfMaterialsID" />
@@ -790,6 +797,7 @@ warning 6031: The column 'DocumentNode' on the table/view 'AdventureWorks2012.Pr
           <EntitySet Name="AWBuildVersion" EntityType="Self.AWBuildVersion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DatabaseLog" EntityType="Self.DatabaseLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ErrorLog" EntityType="Self.ErrorLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GetCustomerID" EntityType="Self.GetCustomerID" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BillOfMaterials" EntityType="Self.BillOfMaterials" Schema="Production" store:Type="Tables" />
           <EntitySet Name="Culture" EntityType="Self.Culture" Schema="Production" store:Type="Tables" />
           <EntitySet Name="Illustration" EntityType="Self.Illustration" Schema="Production" store:Type="Tables" />
@@ -1883,14 +1891,15 @@ warning 6031: The column 'DocumentNode' on the table/view 'AdventureWorks2012.Pr
           </FunctionImport>
           <FunctionImport Name="uspGetMostPopularProducts" ReturnType="Collection(AdventureWorks2012Model.uspGetMostPopularProducts_Result)" />
           <FunctionImport Name="uspGetMpstPopularBikes" ReturnType="Collection(AdventureWorks2012Model.uspGetMpstPopularBikes_Result)" >
-            <Parameter Name="CustomerId" Mode="In" Type="Int32" />
+          <Parameter Name="CustomerId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="uspGetMpstPopularClothing" ReturnType="Collection(AdventureWorks2012Model.uspGetMpstPopularClothing_Result)" >
-            <Parameter Name="CustomerId" Mode="In" Type="Int32" />
+          <Parameter Name="CustomerId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="uspGetPeopleAlsoBought" ReturnType="Collection(AdventureWorks2012Model.uspGetPeopleAlsoBought_Result)">
           <Parameter Name="ProductId" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="GetCustomerIDs" EntityType="AdventureWorks2012Model.GetCustomerID" />
         </EntityContainer>
         <ComplexType Name="uspGetProductDeatils_Result">
           <Property Type="Int32" Name="ProductID" Nullable="false" />
@@ -1975,6 +1984,13 @@ warning 6031: The column 'DocumentNode' on the table/view 'AdventureWorks2012.Pr
           <Property Type="Binary" Name="ThumbNailPhoto" Nullable="true" />
           <Property Type="Int32" Name="SoldUnits" Nullable="true" />
         </ComplexType>
+        <EntityType Name="GetCustomerID">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerID" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2493,6 +2509,14 @@ warning 6031: The column 'DocumentNode' on the table/view 'AdventureWorks2012.Pr
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="GetCustomerIDs">
+            <EntityTypeMapping TypeName="AdventureWorks2012Model.GetCustomerID">
+              <MappingFragment StoreEntitySet="GetCustomerID">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

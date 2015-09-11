@@ -19,38 +19,22 @@ namespace NetApp.Controllers
         {
             if (User.Identity.GetUserId() != null)
             {
+                
                 var productRepository = new ProductRepository();
-
                 var HomeItems = new HomeViewModel();
-
+                int customerid = productRepository.GetCustomerID(User.Identity.GetUserId());
                 var tvr = await productRepository.GetTreeViewItems();
-
-
                 var id = productRepository.GetMostPopularItems();
-
-                var pb = productRepository.GetMostPopularBikes(11111);
-
-                var pc = productRepository.GetMostPopularClothing(11111);
-
-                var boyp = productRepository.BasedOnPurchase(11111);
-
-                var mpa = productRepository.MostPopularInArea(11111);
-
-
-
+                var pb = productRepository.GetMostPopularBikes(customerid);
+                var pc = productRepository.GetMostPopularClothing(customerid);
+                var boyp = productRepository.BasedOnPurchase(customerid);
+                var mpa = productRepository.MostPopularInArea(customerid);
+                
                 HomeItems.MostPopularInArea = mpa;
-
                 HomeItems.BasedOnPurchase = boyp;
-
-
                 HomeItems.PopularClothing = pc;
-
                 HomeItems.PopularBikes = pb;
-
                 HomeItems.Categories = tvr;
-
-
-
                 HomeItems.modeldata = id;
 
                 return View(HomeItems);
@@ -75,27 +59,34 @@ namespace NetApp.Controllers
         }
    
        [HttpGet]
-        public ActionResult About( int id)
+        public ActionResult About( int? id)
         {
-            var productRepository = new ProductRepository();
-            var pvm = new ProductViewModel();
+            if (User.Identity.GetUserId() != null)
+            {
+                var productRepository = new ProductRepository();
+                var pvm = new ProductViewModel();
 
-            var gpab = productRepository.GetPeopleAlsoBought(id);
+                var gpab = productRepository.GetPeopleAlsoBought(id);
 
-            pvm.PeopleAlsoBought = gpab;
-            var idprod = productRepository.GetProductDetails(id);
-           
-            pvm.LargePhoto = idprod.LargePhoto;
-            pvm.listPrice = idprod.listPrice;
-            pvm.Name = idprod.Name;
-            pvm.ProductId = idprod.ProductId;
-            pvm.color = idprod.color;
-            pvm.Weight = idprod.Weight;
-            pvm.size = idprod.size;
-            pvm.description = idprod.description;
-            ViewBag.Message = "Your application description page.";
+                pvm.PeopleAlsoBought = gpab;
+                var idprod = productRepository.GetProductDetails(id);
 
-            return View(pvm);
+                pvm.LargePhoto = idprod.LargePhoto;
+                pvm.listPrice = idprod.listPrice;
+                pvm.Name = idprod.Name;
+                pvm.ProductId = idprod.ProductId;
+                pvm.color = idprod.color;
+                pvm.Weight = idprod.Weight;
+                pvm.size = idprod.size;
+                pvm.description = idprod.description;
+                ViewBag.Message = "Your application description page.";
+
+                return View(pvm);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
         }
 
         [HttpPost]
@@ -103,7 +94,7 @@ namespace NetApp.Controllers
         {
             var productRepository = new ProductRepository();
             int productid = pvm.ProductId;
-            int customerid = 11111;
+            int customerid = productRepository.GetCustomerID(User.Identity.GetUserId()); ;
             int quantity = pvm.quantity;
             var idprod = productRepository.GetProductDetails(productid);
             pvm.LargePhoto = idprod.LargePhoto;

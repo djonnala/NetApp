@@ -59,6 +59,7 @@ namespace NetApp.Models
         public virtual DbSet<WorkOrder> WorkOrders { get; set; }
         public virtual DbSet<WorkOrderRouting> WorkOrderRoutings { get; set; }
         public virtual DbSet<ProductDocument> ProductDocuments { get; set; }
+        public virtual DbSet<GetCustomerID> GetCustomerIDs { get; set; }
     
         public virtual ObjectResult<uspGetProductDeatils_Result> uspGetProductDeatils(Nullable<int> productId)
         {

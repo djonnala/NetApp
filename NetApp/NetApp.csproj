@@ -213,6 +213,9 @@
     <Compile Include="Models\ErrorLog.cs">
       <DependentUpon>AdventureWorksDatabase.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GetCustomerID.cs">
+      <DependentUpon>AdventureWorksDatabase.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Illustration.cs">
@@ -222,21 +225,6 @@
       <DependentUpon>AdventureWorksDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\NetApp.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>NetApp.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\NetApp.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>NetApp.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\NetApp.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>NetApp.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\Product.cs">
       <DependentUpon>AdventureWorksDatabase.tt</DependentUpon>
     </Compile>
@@ -282,9 +270,6 @@
     <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="Models\ScrapReason.cs">
       <DependentUpon>AdventureWorksDatabase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\testtable.cs">
-      <DependentUpon>NetApp.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TransactionHistory.cs">
       <DependentUpon>AdventureWorksDatabase.tt</DependentUpon>
@@ -344,25 +329,8 @@
       <DependentUpon>AdventureWorksDatabase.edmx</DependentUpon>
       <LastGenOutput>AdventureWorksDatabase.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\NetApp.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>NetApp.edmx</DependentUpon>
-      <LastGenOutput>NetApp.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\NetApp.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>NetApp.edmx</DependentUpon>
-      <LastGenOutput>NetApp.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\NetApp.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>NetApp.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\NetApp.edmx.diagram">
-      <DependentUpon>NetApp.edmx</DependentUpon>
-    </Content>
     <EntityDeploy Include="Models\AdventureWorksDatabase.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>AdventureWorksDatabase.Designer.cs</LastGenOutput>
@@ -371,6 +339,7 @@
       <DependentUpon>AdventureWorksDatabase.edmx</DependentUpon>
     </Content>
     <Content Include="fonts\glyphicons-halflings-regular - Copy.woff" />
+    <None Include="Properties\PublishProfiles\NetAppLocal.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

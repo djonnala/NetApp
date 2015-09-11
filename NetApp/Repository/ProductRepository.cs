@@ -43,13 +43,25 @@ namespace NetApp.Repository
             }
             return  bopmodel;
         }
-        
+
+        public int GetCustomerID(string id)
+        {
+            int customerid=0;
+            var record = (from a in db.GetCustomerIDs
+                              where a.ID == id
+                              select a.CustomerID).FirstOrDefault();
+            if(record!=null)
+            {
+                customerid = (int)record;
+            }
+            return customerid;
+        }
 
         public List<CarousalViewModel> MostPopularInArea(int customerid)
         {
             var mpa = db.uspGetMostPopularInUrArea(customerid).ToList();
             var hvm = new List<CarousalViewModel>();
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < mpa.Count; i++)
             {
                 hvm.Add(new CarousalViewModel() { Name = mpa[i].Name, ListPrice = mpa[i].ListPrice, ProductPhoto = mpa[i].LargePhoto, ProductID = mpa[i].ProductID });
             }
@@ -61,7 +73,7 @@ namespace NetApp.Repository
 
             var mpp = db.uspGetMostPopularProducts().ToList();
             var hvm = new List<CarousalViewModel>();
-            for(int i=0;i<12;i++)
+            for(int i=0;i<mpp.Count;i++)
             {
                 hvm.Add(new CarousalViewModel() { Name = mpp[i].Name,ListPrice=mpp[1].ListPrice, ProductPhoto = mpp[i].LargePhoto,ProductID=mpp[i].ProductID });
             }
@@ -72,7 +84,7 @@ namespace NetApp.Repository
         }
 
 
-        public List<ProductViewModel> GetPeopleAlsoBought(int productId)
+        public List<ProductViewModel> GetPeopleAlsoBought(int? productId)
         {
             
             var PAB = db.uspGetPeopleAlsoBought(productId).ToList();
@@ -99,7 +111,7 @@ namespace NetApp.Repository
         {
             var mpb = db.uspGetMpstPopularBikes(customerid).ToList();
             var hvm = new List<CarousalViewModel>();
-            for(int i=0;i<12;i++)
+            for(int i=0;i<mpb.Count;i++)
             {
                 hvm.Add(new CarousalViewModel() { Name = mpb[i].Name, ListPrice = mpb[i].ListPrice, ProductPhoto = mpb[i].LargePhoto, ProductID = mpb[i].ProductID });
             }
@@ -110,14 +122,14 @@ namespace NetApp.Repository
         {
             var mpb = db.uspGetMpstPopularClothing(customerid).ToList();
             var hvm = new List<CarousalViewModel>();
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < mpb.Count; i++)
             {
                 hvm.Add(new CarousalViewModel() { Name = mpb[i].Name, ListPrice = mpb[i].ListPrice, ProductPhoto = mpb[i].LargePhoto, ProductID = mpb[i].ProductID });
             }
             return hvm;
         }
 
-        public ProductViewModel GetProductDetails(int productphotoid)
+        public ProductViewModel GetProductDetails(int? productphotoid)
         {
             var productdetails = db.uspGetProductDeatils(productphotoid);
 
