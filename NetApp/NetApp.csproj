@@ -319,6 +319,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\image002.jpg" />
+    <Content Include="Images\Seattle.jpg" />
     <Content Include="Models\AdventureWorksDatabase.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>AdventureWorksDatabase.edmx</DependentUpon>

@@ -23,7 +23,7 @@
                        <input type="text" id="search" placeholder="Search..." style="float:right"/>
                     </div>*@
                     <div class="col-md-12">
-                        <img src="~/Images/image002.jpg" alt="Adventure Works Cycles" />
+                        <img src="~/Images/Seattle.jpg" alt="Adventure Works Cycles" />
                         @*<img  src="http://placehold.it/1140x300" alt="">*@
                     </div>
                 </div>
@@ -56,7 +56,8 @@
 
 
                         <div class="carousel slide" id="MostPopularitems" data-ride="carousel" data-interval="0">
-                            <h2 style="padding-left:10px">Most Popular Items</h2>
+                            <center> <h2 style="padding-left:10px;">Most Popular Items</h2></center>
+                            <hr style="width:60%;border-style:solid" />
                             <div class="carousel-inner">
                                 @for (int i = 0; i < 12; i = i + 4)
                                 {
@@ -121,7 +122,8 @@
                     <div class="row">
 
                         <div class="carousel slide" id="Recommended" data-ride="carousel" data-interval="0">
-                            <h2 style="padding-left:10px">MostPopular Bikes</h2>
+                            <center><h2 style="padding-left:10px">Most Popular Bikes</h2></center>
+                            <hr style="width:60%;border-style:solid" />
                             <div class="carousel-inner">
                                 @for (int i = 0; i < Model.PopularBikes.Count; i = i + 4)
                                 {
@@ -186,7 +188,8 @@
                     <div class="row">
 
                         <div class="carousel slide" id="MostPopularClothing" data-ride="carousel" data-interval="0">
-                            <h2 style="padding-left:10px">Most Popular Clothing</h2>
+                            <center> <h2 style="padding-left:10px">Most Popular Clothing</h2></center>
+                            <hr style="width:60%;border-style:solid" />
                             <div class="carousel-inner">
                                 @for (int i = 0; i < 12; i = i + 4)
                                 {
@@ -254,7 +257,8 @@
                     <div class="row">
 
                         <div class="carousel slide" id="BasedOnYourPurchase" data-ride="carousel" data-interval="0">
-                            <h2 style="padding-left:10px">Based On Your Purchase</h2>
+                            <center><h2 style="padding-left:10px">Based On Your Purchase</h2></center>
+                            <hr style="width:60%;border-style:solid" />
                             <div class="carousel-inner">
                                 @for (int i = 0; i < 12; i = i + 4)
                                 {
@@ -321,7 +325,8 @@
                     <div class="row">
 
                         <div class="carousel slide" id="PopularinyourArea" data-ride="carousel" data-interval="0">
-                            <h2 style="padding-left:10px">Popular in your Area</h2>
+                            <center><h2 style="padding-left:10px">Popular in your Area</h2></center>
+                            <hr style="width:60%;border-style:solid" />
                             <div class="carousel-inner">
                                 @for (int i = 0; i < 12; i = i + 4)
                                 {
