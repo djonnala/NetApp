@@ -89,20 +89,19 @@ namespace NetApp.Repository
             
             var PAB = db.uspGetPeopleAlsoBought(productId).ToList();
             var pvm = new List<ProductViewModel>();
-            if (PAB.Count >= 12)
-            {
-                for (int i = 0; i < 12; i++)
+            
+                for (int i = 0; i < PAB.Count; i++)
                 {
                     pvm.Add(new ProductViewModel() { Name = PAB[i].Name, listPrice = PAB[i].ListPrice, LargePhoto = PAB[i].LargePhoto, ProductId = PAB[i].ProductID });
                 }
-            }
-            else
-            {
-                for(int i = 0; i < PAB.Count; i++)
-                {
-                    pvm.Add(new ProductViewModel() { Name = PAB[i].Name, listPrice = PAB[i].ListPrice, LargePhoto = PAB[i].LargePhoto, ProductId = PAB[i].ProductID });
-                }
-            }
+            
+            //else
+            //{
+            //    for(int i = 0; i < PAB.Count; i++)
+            //    {
+            //        pvm.Add(new ProductViewModel() { Name = PAB[i].Name, listPrice = PAB[i].ListPrice, LargePhoto = PAB[i].LargePhoto, ProductId = PAB[i].ProductID });
+            //    }
+            //}
 
             return pvm;
         }

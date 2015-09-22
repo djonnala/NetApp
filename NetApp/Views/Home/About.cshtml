@@ -76,9 +76,9 @@
         <div class="carousel slide" id="testing" data-ride="carousel" data-interval="0">
             <h2 style="padding-left:10px">People who bought This also bought</h2>
             <div class="carousel-inner">
-                @for (int i = 0; i < Model.PeopleAlsoBought.Count; i = i + 4)
+                @for (int i = 10; i < Model.PeopleAlsoBought.Count; i = i + 4)
                 {
-                    if (i == 0)
+                    if (i == 10)
                     {
                         <div class="item active">
                             @for (int j = i; j < i + 4 && j<Model.PeopleAlsoBought.Count; j++)
@@ -100,10 +100,10 @@
                             }
                         </div>
                     }
-                    if (i != 0)
+                    if (i != 10)
                     {
                         <div class="item">
-                            @for (int j = i; j < i + 4; j++)
+                            @for (int j = i; j < i + 4 && j < Model.PeopleAlsoBought.Count; j++)
                             {
                                 <div class="col-sm-3 col-lg-3 col-md-3">
                                     <div class="thumbnail">
@@ -134,6 +134,12 @@
                 <span class="glyphicon glyphicon-chevron-right"></span>
             </a>
         </div>
+       @if(null!=TempData["alertMessage"])
+       {
+           <script type="text/javascript">
+               alert("@TempData["alertMessage"]");
+           </script>
+       }
     </div>
 
     <script>

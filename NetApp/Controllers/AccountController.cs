@@ -87,6 +87,7 @@ namespace NetApp.Controllers
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", HttpContext.User.Identity.Name);
                     return View(model);
             }
         }

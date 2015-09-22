@@ -95,7 +95,7 @@ namespace NetApp.Controllers
         {
             var productRepository = new ProductRepository();
             int productid = pvm.ProductId;
-            int customerid = productRepository.GetCustomerID(User.Identity.GetUserId()); ;
+            int customerid = productRepository.GetCustomerID(User.Identity.GetUserId());
             int quantity = pvm.quantity;
             var idprod = productRepository.GetProductDetails(productid);
             pvm.LargePhoto = idprod.LargePhoto;
@@ -111,6 +111,10 @@ namespace NetApp.Controllers
 
 
             productRepository.InsertNewSaleItem(customerid, productid, quantity);
+
+            TempData["alertmessage"] = "You have purchased   "+ pvm.Name + " of quantity " + pvm.quantity  ;
+
+            //ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "You have purchased" + pvm.quantity + " items of" + pvm.Name, true);
             return View(pvm);
         }
 
