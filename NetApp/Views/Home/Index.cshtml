@@ -59,12 +59,12 @@
                             <center> <h2 style="padding-left:10px;">Most Popular Items</h2></center>
                             <hr style="width:60%;border-style:solid" />
                             <div class="carousel-inner">
-                                @for (int i = 0; i < 12; i = i + 4)
+                                @for (int i = 0; i < Model.modeldata.Count; i = i + 4)
                                 {
                                     if (i == 0)
                                     {
                                         <div class="item active">
-                                            @for (int j = i; j < i + 4; j++)
+                                            @for (int j = i; j < i + 4 && j<Model.modeldata.Count; j++)
                                             {
                                                 <div class="col-sm-3 col-lg-3 col-md-3">
                                                     <div class="thumbnail">
@@ -87,7 +87,7 @@
                                     if (i != 0)
                                     {
                                         <div class="item">
-                                            @for (int j = i; j < i + 4; j++)
+                                            @for (int j = i; j < i + 4 && j<Model.modeldata.Count; j++)
                                             {
                                                 <div class="col-sm-3 col-lg-3 col-md-3">
                                                     <div class="thumbnail">
@@ -130,7 +130,7 @@
                                     if (i == 0)
                                     {
                                         <div class="item active">
-                                            @for (int j = i; j < i + 4; j++)
+                                            @for (int j = i; j < i + 4 && j<Model.PopularBikes.Count; j++)
                                             {
                                                 <div class="col-sm-3 col-lg-3 col-md-3">
                                                     <div class="thumbnail">
@@ -152,7 +152,7 @@
                                     if (i != 0)
                                     {
                                         <div class="item">
-                                            @for (int j = i; j < i + 4; j++)
+                                            @for (int j = i; j < i + 4&& j<Model.PopularBikes.Count; j++)
                                             {
                                                 <div class="col-sm-3 col-lg-3 col-md-3">
                                                     <div class="thumbnail">
@@ -191,12 +191,12 @@
                             <center> <h2 style="padding-left:10px">Most Popular Clothing</h2></center>
                             <hr style="width:60%;border-style:solid" />
                             <div class="carousel-inner">
-                                @for (int i = 0; i < 12; i = i + 4)
+                                @for (int i = 0; i < Model.PopularClothing.Count; i = i + 4)
                                 {
                                     if (i == 0)
                                     {
                                         <div class="item active">
-                                            @for (int j = i; j < i + 4; j++)
+                                            @for (int j = i; j < i + 4&&j<Model.PopularClothing.Count; j++)
                                             {
                                                 <div class="col-sm-3 col-lg-3 col-md-3">
                                                     <div class="thumbnail">
@@ -218,7 +218,7 @@
                                     if (i != 0)
                                     {
                                         <div class="item">
-                                            @for (int j = i; j < i + 4; j++)
+                                            @for (int j = i; j < i + 4&&j<Model.PopularClothing.Count; j++)
                                             {
                                                 <div class="col-sm-3 col-lg-3 col-md-3">
                                                     <div class="thumbnail">
@@ -260,12 +260,12 @@
                             <center><h2 style="padding-left:10px">Based On Your Purchase</h2></center>
                             <hr style="width:60%;border-style:solid" />
                             <div class="carousel-inner">
-                                @for (int i = 0; i < 12; i = i + 4)
+                                @for (int i = 0; i < Model.BasedOnPurchase.Count; i = i + 4)
                                 {
                                     if (i == 0)
                                     {
                                         <div class="item active">
-                                            @for (int j = i; j < i + 4; j++)
+                                            @for (int j = i; j < i + 4&&j<Model.BasedOnPurchase.Count; j++)
                                             {
                                                 <div class="col-sm-3 col-lg-3 col-md-3">
                                                     <div class="thumbnail">
@@ -287,7 +287,7 @@
                                     if (i != 0)
                                     {
                                         <div class="item">
-                                            @for (int j = i; j < i + 4; j++)
+                                            @for (int j = i; j < i + 4&&j<Model.BasedOnPurchase.Count; j++)
                                             {
                                                 <div class="col-sm-3 col-lg-3 col-md-3">
                                                     <div class="thumbnail">
@@ -328,12 +328,12 @@
                             <center><h2 style="padding-left:10px">Popular in your Area</h2></center>
                             <hr style="width:60%;border-style:solid" />
                             <div class="carousel-inner">
-                                @for (int i = 0; i < 12; i = i + 4)
+                                @for (int i = 0; i < Model.MostPopularInArea.Count; i = i + 4)
                                 {
                                     if (i == 0)
                                     {
                                         <div class="item active">
-                                            @for (int j = i; j < i + 4; j++)
+                                            @for (int j = i; j < i + 4&&j<Model.MostPopularInArea.Count; j++)
                                             {
                                                 <div class="col-sm-3 col-lg-3 col-md-3">
                                                     <div class="thumbnail">
@@ -355,7 +355,7 @@
                                     if (i != 0)
                                     {
                                         <div class="item">
-                                            @for (int j = i; j < i + 4; j++)
+                                            @for (int j = i; j < i + 4&&j<Model.MostPopularInArea.Count; j++)
                                             {
                                                 <div class="col-sm-3 col-lg-3 col-md-3">
                                                     <div class="thumbnail">
