@@ -56,9 +56,13 @@
 
 
                         <div class="carousel slide" id="MostPopularitems" data-ride="carousel" data-interval="0">
+                            @if (Model.modeldata.Count > 0)
+                            {
                             <center> <h2 style="padding-left:10px;">Most Popular Items</h2></center>
                             <hr style="width:60%;border-style:solid" />
+                            }
                             <div class="carousel-inner">
+                                
                                 @for (int i = 0; i < Model.modeldata.Count; i = i + 4)
                                 {
                                     if (i == 0)
@@ -122,8 +126,11 @@
                     <div class="row">
 
                         <div class="carousel slide" id="Recommended" data-ride="carousel" data-interval="0">
+                            @if(Model.PopularBikes.Count>0)
+                            { 
                             <center><h2 style="padding-left:10px">Most Popular Bikes</h2></center>
                             <hr style="width:60%;border-style:solid" />
+                            }
                             <div class="carousel-inner">
                                 @for (int i = 0; i < Model.PopularBikes.Count; i = i + 4)
                                 {
@@ -174,22 +181,28 @@
                                         </div>
                                     }
                                 }
-
+                               
                             </div>
+                            @if (Model.PopularBikes.Count > 0)
+                            {
                             <a class="left carousel-control" href="#Recommended" role="button" data-slide="prev">
                                 <span class="glyphicon glyphicon-chevron-left"></span>
                             </a>
                             <a class="right carousel-control" href="#Recommended" role="button" data-slide="next">
                                 <span class="glyphicon glyphicon-chevron-right"></span>
                             </a>
+                            }
                         </div>
                     </div>
 
                     <div class="row">
 
                         <div class="carousel slide" id="MostPopularClothing" data-ride="carousel" data-interval="0">
+                            @if(Model.PopularClothing.Count>0)
+                            {
                             <center> <h2 style="padding-left:10px">Most Popular Clothing</h2></center>
                             <hr style="width:60%;border-style:solid" />
+                            }
                             <div class="carousel-inner">
                                 @for (int i = 0; i < Model.PopularClothing.Count; i = i + 4)
                                 {
@@ -242,12 +255,15 @@
                                 }
 
                             </div>
+                            @if (Model.PopularClothing.Count > 0)
+                            {
                             <a class="left carousel-control" href="#MostPopularClothing" role="button" data-slide="prev">
                                 <span class="glyphicon glyphicon-chevron-left"></span>
                             </a>
                             <a class="right carousel-control" href="#MostPopularClothing" role="button" data-slide="next">
                                 <span class="glyphicon glyphicon-chevron-right"></span>
                             </a>
+                            }
                         </div>
                     </div>
 
@@ -257,8 +273,11 @@
                     <div class="row">
 
                         <div class="carousel slide" id="BasedOnYourPurchase" data-ride="carousel" data-interval="0">
+                            @if (Model.BasedOnPurchase.Count > 0)
+                            {
                             <center><h2 style="padding-left:10px">Based On Your Purchase</h2></center>
                             <hr style="width:60%;border-style:solid" />
+                            }
                             <div class="carousel-inner">
                                 @for (int i = 0; i < Model.BasedOnPurchase.Count; i = i + 4)
                                 {
@@ -311,12 +330,15 @@
                                 }
 
                             </div>
+                            @if (Model.BasedOnPurchase.Count > 0)
+                            {
                             <a class="left carousel-control" href="#BasedOnYourPurchase" role="button" data-slide="prev">
                                 <span class="glyphicon glyphicon-chevron-left"></span>
                             </a>
                             <a class="right carousel-control" href="#BasedOnYourPurchase" role="button" data-slide="next">
                                 <span class="glyphicon glyphicon-chevron-right"></span>
                             </a>
+                            }
                         </div>
                     </div>
 
@@ -325,8 +347,11 @@
                     <div class="row">
 
                         <div class="carousel slide" id="PopularinyourArea" data-ride="carousel" data-interval="0">
+                            @if (Model.MostPopularInArea.Count > 0)
+                            {
                             <center><h2 style="padding-left:10px">Popular in your Area</h2></center>
                             <hr style="width:60%;border-style:solid" />
+                            }
                             <div class="carousel-inner">
                                 @for (int i = 0; i < Model.MostPopularInArea.Count; i = i + 4)
                                 {
@@ -379,12 +404,16 @@
                                 }
 
                             </div>
+                            @if (Model.MostPopularInArea.Count > 0)
+                            {
+
                             <a class="left carousel-control" href="#PopularinyourArea" role="button" data-slide="prev">
                                 <span class="glyphicon glyphicon-chevron-left"></span>
                             </a>
                             <a class="right carousel-control" href="#PopularinyourArea" role="button" data-slide="next">
                                 <span class="glyphicon glyphicon-chevron-right"></span>
                             </a>
+                            }
                         </div>
                     </div>
 
