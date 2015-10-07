@@ -75,7 +75,7 @@ namespace NetApp.Repository
             var hvm = new List<CarousalViewModel>();
             for(int i=0;i<mpp.Count;i++)
             {
-                hvm.Add(new CarousalViewModel() { Name = mpp[i].Name,ListPrice=mpp[1].ListPrice, ProductPhoto = mpp[i].LargePhoto,ProductID=mpp[i].ProductID });
+                hvm.Add(new CarousalViewModel() { Name = mpp[i].Name,ListPrice=mpp[i].ListPrice, ProductPhoto = mpp[i].LargePhoto,ProductID=mpp[i].ProductID });
             }
             
             return hvm;
