@@ -21,6 +21,37 @@
     <script src="~/Scripts/jquery-ui.js"></script> 
     @Scripts.Render("~/bundles/bootstrap")
 
+    <script>
+    $(function () {
+
+        $('#search').autocomplete({
+            source: function (request, response) {
+                var customer = new Array();
+                $.ajax({
+                    async: false,
+                    cache: false,
+                    type: "POST",
+                    url: "@(Url.Action("Autocomplete", "Home"))",
+                    data: { "term": request.term },
+                    dataType: 'json',
+                    success: function (data) {
+                        for(var i=0;i<data.length;i++)
+                        {
+                            customer[i] = { label: data[i].Name, ID: data[i].ProductID }
+                        }
+                    }
+            });
+        response(customer);
+            },
+            select: function (e, ui) {
+
+                window.location.href = '/Home/About/' +ui.item.ID;
+                }
+    });
+    });
+
+    </script>
+
     @RenderSection("scripts", required: false)
 </body>
 </html>
