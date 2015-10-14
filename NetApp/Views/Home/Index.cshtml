@@ -1,463 +1,364 @@
 ﻿@model NetApp.Models.HomeViewModel
-@*<link rel="stylesheet"
-      href="http://code.jquery.com/ui/1.9.0/themes/smoothness/jquery-ui.css" />
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>*@ 
 
-<link rel="stylesheet"
-      href="~/Content/jquery-ui.css" />
-<script src="~/Scripts/jquery-1.9.1.js"></script>
-<script src="~/Scripts/jquery-ui.js"></script> 
 
 @{
     ViewBag.Title = "Home Page";
 }
 
 
-    <br />
-    <div class="container">
+<br />
+<div class="container">
+        <div class="row carousel-holder">
+            <img src="~/Images/seattle_retail_shoppingscreen_v2.png" alt="Adventure Works Cycles" />
+        </div>
+    <div class="row col-md-12">
         <div class="row">
-            <div class="col-md-12">
-                <div class="row carousel-holder">
-                    @*<div class="col-md-12" >
-                       <input type="text" id="search" placeholder="Search..." style="float:right"/>
-                    </div>*@
-                    <div class="col-md-12">
-                        <img src="~/Images/Seattle.jpg" alt="Adventure Works Cycles" />
-                        @*<img  src="http://placehold.it/1140x300" alt="">*@
-                    </div>
+
+
+            <div class="carousel slide" id="MostPopularitems" data-ride="carousel" data-interval="0">
+                @if (Model.modeldata.Count > 0)
+                {
+                    <h2>Most Popular Items</h2>
+                }
+                <div class="carousel-inner">
+
+                    @for (int i = 0; i < Model.modeldata.Count; i = i + 4)
+                    {
+                        if (i == 0)
+                        {
+                            <div class="item active">
+                                @for (int j = i; j < i + 4 && j < Model.modeldata.Count; j++)
+                                {
+                                    <div class="col-sm-1 col-lg-3 col-md-3 thumbnail">
+                                            <a href="@Url.Action("About", "Home",new { id = Model.modeldata[j].ProductID })">
+                                                <img src="data:image;base64,@System.Convert.ToBase64String(Model.modeldata[j].ProductPhoto)" />
+                                            </a>
+                                            <div class="caption">
+                                                
+                                                <h4>
+                                                    <a href="@Url.Action("About", "Home",new { id = Model.modeldata[j].ProductID })">@Model.modeldata[j].Name</a>
+                                                </h4>
+                                                <h4>$@Model.modeldata[j].ListPrice.ToString("0.00")</h4>
+                                            </div>
+
+                                    </div>
+                                }
+                            </div>
+                        }
+                        if (i != 0)
+                        {
+                            <div class="item">
+                                @for (int j = i; j < i + 4 && j < Model.modeldata.Count; j++)
+                                {
+                                    <div class="col-sm-1 col-lg-3 col-md-3 thumbnail">
+                                            <a href="@Url.Action("About", "Home",new { id = Model.modeldata[j].ProductID })">
+                                                <img src="data:image;base64,@System.Convert.ToBase64String(Model.modeldata[j].ProductPhoto)" />
+                                            </a>
+                                            <div class="caption">
+                                                
+                                                <h4>
+                                                    <a href="@Url.Action("About", "Home",new { id = Model.modeldata[j].ProductID })">@Model.modeldata[j].Name</a>
+                                                </h4>
+                                                <h4>$@Model.modeldata[j].ListPrice.ToString("0.00")</h4>
+                                            </div>
+
+                                    </div>
+                                }
+                            </div>
+                        }
+                    }
+
                 </div>
-                <br />
-                <div class="col-md-3">
-                    
-                    <div class="row">
-                        <ul class="categories">
-                            <h2 style="padding-left:10px">Categories</h2>
-                            @for (int i = 0; i < Model.Categories.Count; i++)
-                            {
-                                <li class="cat">
-                                    @Model.Categories[i].CategoryName
-                                    <ul class="subcat">
-                                        @for(int j=0;j<Model.Categories[i].subCategories.Count;j++)
-                                        {
-                                            <li>
-                                                @Model.Categories[i].subCategories[j].CategoryName
-                                            </li>
-                                        }
-                                    </ul>
-                            </li>
-                            }
+                <a class="left carousel-control" href="#MostPopularitems" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="right carousel-control" href="#MostPopularitems" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </div>
+        </div>
 
-                        </ul>
-                    </div>
+        <div class="row">
+
+            <div class="carousel slide" id="Recommended" data-ride="carousel" data-interval="0">
+                @if (Model.PopularBikes.Count > 0)
+                {
+                    <h2 style="padding-left:10px">Most Popular Bikes</h2>
+                }
+                <div class="carousel-inner">
+                    @for (int i = 0; i < Model.PopularBikes.Count; i = i + 4)
+                    {
+                        if (i == 0)
+                        {
+                            <div class="item active">
+                                @for (int j = i; j < i + 4 && j < Model.PopularBikes.Count; j++)
+                                {
+                                    <div class="col-sm-1 col-lg-3 col-md-3 thumbnail">
+
+                                            <a href="@Url.Action("About", "Home",new { id = Model.PopularBikes[j].ProductID })">
+                                                <img src="data:image;base64,@System.Convert.ToBase64String(Model.PopularBikes[j].ProductPhoto)" />
+                                            </a>
+                                            <div class="caption">
+                                                
+                                                <h4>
+                                                    <a href="@Url.Action("About", "Home",new { id = Model.PopularBikes[j].ProductID })">@Model.PopularBikes[j].Name</a>
+                                                </h4>
+
+                                                <h4>$@Model.PopularBikes[j].ListPrice.ToString("0.00")</h4>
+                                            </div>
+
+                                    </div>
+                                }
+                            </div>
+                        }
+                        if (i != 0)
+                        {
+                            <div class="item">
+                                @for (int j = i; j < i + 4 && j < Model.PopularBikes.Count; j++)
+                                {
+                                    <div class="col-sm-1 col-lg-3 col-md-3 thumbnail">
+
+                                            <a href="@Url.Action("About", "Home",new { id = Model.PopularBikes[j].ProductID })">
+                                                <img src="data:image;base64,@System.Convert.ToBase64String(Model.PopularBikes[j].ProductPhoto)" />
+                                            </a>
+                                            <div class="caption">
+                                                
+                                                <h4>
+                                                    <a href="@Url.Action("About", "Home",new { id = Model.PopularBikes[j].ProductID })">@Model.PopularBikes[j].Name</a>
+                                                </h4>
+                                                <h4>$@Model.PopularBikes[j].ListPrice.ToString("0.00")</h4>
+                                            </div>
+
+                                    </div>
+                                }
+                            </div>
+                        }
+                    }
+
                 </div>
-                <div class="col-md-9">
-                    <div class="row">
+                @if (Model.PopularBikes.Count > 0)
+                {
+                    <a class="left carousel-control" href="#Recommended" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                                <a class="right carousel-control" href="#Recommended" role="button" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                </a>
+                }
+            </div>
+        </div>
 
+        <div class="row">
 
-                        <div class="carousel slide" id="MostPopularitems" data-ride="carousel" data-interval="0">
-                            @if (Model.modeldata.Count > 0)
-                            {
-                            <center> <h2 style="padding-left:10px;">Most Popular Items</h2></center>
-                            <hr style="width:60%;border-style:solid" />
-                            }
-                            <div class="carousel-inner">
-                                
-                                @for (int i = 0; i < Model.modeldata.Count; i = i + 4)
+            <div class="carousel slide" id="MostPopularClothing" data-ride="carousel" data-interval="0">
+                @if (Model.PopularClothing.Count > 0)
+                {
+                    <h2 style="padding-left:10px">Most Popular Clothing</h2>
+                }
+                <div class="carousel-inner">
+                    @for (int i = 0; i < Model.PopularClothing.Count; i = i + 4)
+                    {
+                        if (i == 0)
+                        {
+                            <div class="item active">
+                                @for (int j = i; j < i + 4 && j < Model.PopularClothing.Count; j++)
                                 {
-                                    if (i == 0)
-                                    {
-                                        <div class="item active">
-                                            @for (int j = i; j < i + 4 && j<Model.modeldata.Count; j++)
-                                            {
-                                                <div class="col-sm-3 col-lg-3 col-md-3">
-                                                    <div class="thumbnail">
-                                                        <a href="@Url.Action("About", "Home",new { id = Model.modeldata[j].ProductID })">
-                                                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.modeldata[j].ProductPhoto)" />
-                                                        </a>
-                                                        <div class="caption">
-                                                            <h4 class="pull-right">$@Model.modeldata[j].ListPrice.ToString("0.00")</h4>
-                                                            <h4>
-                                                                <a href="@Url.Action("About", "Home",new { id = Model.modeldata[j].ProductID })">@Model.modeldata[j].Name</a>
-                                                            </h4>
+                                    <div class="col-sm-1 col-lg-3 col-md-3 thumbnail">
 
-                                                        </div>
+                                            <a href="@Url.Action("About", "Home",new { id = Model.PopularClothing[j].ProductID })">
+                                                <img src="data:image;base64,@System.Convert.ToBase64String(Model.PopularClothing[j].ProductPhoto)" />
+                                            </a>
+                                            <div class="caption">
+                                                
+                                                <h4>
+                                                    <a href="@Url.Action("About", "Home",new { id = Model.PopularClothing[j].ProductID })">@Model.PopularClothing[j].Name</a>
+                                                </h4>
 
-                                                    </div>
-                                                </div>
-                                            }
-                                        </div>
-                                    }
-                                    if (i != 0)
-                                    {
-                                        <div class="item">
-                                            @for (int j = i; j < i + 4 && j<Model.modeldata.Count; j++)
-                                            {
-                                                <div class="col-sm-3 col-lg-3 col-md-3">
-                                                    <div class="thumbnail">
-                                                        <a href="@Url.Action("About", "Home",new { id = Model.modeldata[j].ProductID })">
-                                                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.modeldata[j].ProductPhoto)" />
-                                                        </a>
-                                                        <div class="caption">
-                                                            <h4 class="pull-right">$@Model.modeldata[j].ListPrice.ToString("0.00")</h4>
-                                                            <h4>
-                                                                <a href="@Url.Action("About", "Home",new { id = Model.modeldata[j].ProductID })">@Model.modeldata[j].Name</a>
-                                                            </h4>
+                                                <h4>$@Model.PopularClothing[j].ListPrice.ToString("0.00")</h4>
+                                            </div>
 
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            }
-                                        </div>
-                                    }
+                                    </div>
                                 }
-
                             </div>
-                            <a class="left carousel-control" href="#MostPopularitems" role="button" data-slide="prev">
-                                <span class="glyphicon glyphicon-chevron-left"></span>
-                            </a>
-                            <a class="right carousel-control" href="#MostPopularitems" role="button" data-slide="next">
-                                <span class="glyphicon glyphicon-chevron-right"></span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="row">
-
-                        <div class="carousel slide" id="Recommended" data-ride="carousel" data-interval="0">
-                            @if(Model.PopularBikes.Count>0)
-                            { 
-                            <center><h2 style="padding-left:10px">Most Popular Bikes</h2></center>
-                            <hr style="width:60%;border-style:solid" />
-                            }
-                            <div class="carousel-inner">
-                                @for (int i = 0; i < Model.PopularBikes.Count; i = i + 4)
+                        }
+                        if (i != 0)
+                        {
+                            <div class="item">
+                                @for (int j = i; j < i + 4 && j < Model.PopularClothing.Count; j++)
                                 {
-                                    if (i == 0)
-                                    {
-                                        <div class="item active">
-                                            @for (int j = i; j < i + 4 && j<Model.PopularBikes.Count; j++)
-                                            {
-                                                <div class="col-sm-3 col-lg-3 col-md-3">
-                                                    <div class="thumbnail">
-                                                        <a href="@Url.Action("About", "Home",new { id = Model.PopularBikes[j].ProductID })">
-                                                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.PopularBikes[j].ProductPhoto)" />
-                                                        </a>
-                                                        <div class="caption">
-                                                            <h4 class="pull-right">$@Model.PopularBikes[j].ListPrice.ToString("0.00")</h4>
-                                                            <h4>
-                                                                <a href="@Url.Action("About", "Home",new { id = Model.PopularBikes[j].ProductID })">@Model.PopularBikes[j].Name</a>
-                                                            </h4>
-                                                        </div>
+                                    <div class="col-sm-1 col-lg-3 col-md-3 thumbnail">
 
-                                                    </div>
-                                                </div>
-                                            }
-                                        </div>
-                                    }
-                                    if (i != 0)
-                                    {
-                                        <div class="item">
-                                            @for (int j = i; j < i + 4&& j<Model.PopularBikes.Count; j++)
-                                            {
-                                                <div class="col-sm-3 col-lg-3 col-md-3">
-                                                    <div class="thumbnail">
+                                            <a href="@Url.Action("About", "Home",new { id = Model.PopularClothing[j].ProductID })">
+                                                <img src="data:image;base64,@System.Convert.ToBase64String(Model.PopularClothing[j].ProductPhoto)" />
+                                            </a>
+                                            <div class="caption">
+                                                
+                                                <h4>
+                                                    <a href="@Url.Action("About", "Home",new { id = Model.PopularClothing[j].ProductID })">@Model.PopularClothing[j].Name</a>
+                                                </h4>
+                                                <h4>$@Model.PopularClothing[j].ListPrice.ToString("0.00")</h4>
+                                            </div>
 
-                                                        <a href="@Url.Action("About", "Home",new { id = Model.PopularBikes[j].ProductID })">
-                                                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.PopularBikes[j].ProductPhoto)" />
-                                                        </a>
-                                                        <div class="caption">
-                                                            <h4 class="pull-right">$@Model.PopularBikes[j].ListPrice.ToString("0.00")</h4>
-                                                            <h4>
-                                                                <a href="@Url.Action("About", "Home",new { id = Model.PopularBikes[j].ProductID })">@Model.PopularBikes[j].Name</a>
-                                                            </h4>
-
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            }
-                                        </div>
-                                    }
+                                    </div>
                                 }
-                               
                             </div>
-                            @if (Model.PopularBikes.Count > 0)
-                            {
-                            <a class="left carousel-control" href="#Recommended" role="button" data-slide="prev">
-                                <span class="glyphicon glyphicon-chevron-left"></span>
-                            </a>
-                            <a class="right carousel-control" href="#Recommended" role="button" data-slide="next">
-                                <span class="glyphicon glyphicon-chevron-right"></span>
-                            </a>
-                            }
-                        </div>
-                    </div>
+                        }
+                    }
 
-                    <div class="row">
-
-                        <div class="carousel slide" id="MostPopularClothing" data-ride="carousel" data-interval="0">
-                            @if(Model.PopularClothing.Count>0)
-                            {
-                            <center> <h2 style="padding-left:10px">Most Popular Clothing</h2></center>
-                            <hr style="width:60%;border-style:solid" />
-                            }
-                            <div class="carousel-inner">
-                                @for (int i = 0; i < Model.PopularClothing.Count; i = i + 4)
-                                {
-                                    if (i == 0)
-                                    {
-                                        <div class="item active">
-                                            @for (int j = i; j < i + 4&&j<Model.PopularClothing.Count; j++)
-                                            {
-                                                <div class="col-sm-3 col-lg-3 col-md-3">
-                                                    <div class="thumbnail">
-                                                        <a href="@Url.Action("About", "Home",new { id = Model.PopularClothing[j].ProductID })">
-                                                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.PopularClothing[j].ProductPhoto)" />
-                                                        </a>
-                                                        <div class="caption">
-                                                            <h4 class="pull-right">$@Model.PopularClothing[j].ListPrice.ToString("0.00")</h4>
-                                                            <h4>
-                                                                <a href="@Url.Action("About", "Home",new { id = Model.PopularClothing[j].ProductID })">@Model.PopularClothing[j].Name</a>
-                                                            </h4>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            }
-                                        </div>
-                                    }
-                                    if (i != 0)
-                                    {
-                                        <div class="item">
-                                            @for (int j = i; j < i + 4&&j<Model.PopularClothing.Count; j++)
-                                            {
-                                                <div class="col-sm-3 col-lg-3 col-md-3">
-                                                    <div class="thumbnail">
-
-                                                        <a href="@Url.Action("About", "Home",new { id = Model.PopularClothing[j].ProductID })">
-                                                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.PopularClothing[j].ProductPhoto)" />
-                                                        </a>
-                                                        <div class="caption">
-                                                            <h4 class="pull-right">$@Model.PopularClothing[j].ListPrice.ToString("0.00")</h4>
-                                                            <h4>
-                                                                <a href="@Url.Action("About", "Home",new { id = Model.PopularClothing[j].ProductID })">@Model.PopularClothing[j].Name</a>
-                                                            </h4>
-
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            }
-                                        </div>
-                                    }
-                                }
-
-                            </div>
-                            @if (Model.PopularClothing.Count > 0)
-                            {
-                            <a class="left carousel-control" href="#MostPopularClothing" role="button" data-slide="prev">
-                                <span class="glyphicon glyphicon-chevron-left"></span>
-                            </a>
-                            <a class="right carousel-control" href="#MostPopularClothing" role="button" data-slide="next">
-                                <span class="glyphicon glyphicon-chevron-right"></span>
-                            </a>
-                            }
-                        </div>
-                    </div>
-
-
-
-
-                    <div class="row">
-
-                        <div class="carousel slide" id="BasedOnYourPurchase" data-ride="carousel" data-interval="0">
-                            @if (Model.BasedOnPurchase.Count > 0)
-                            {
-                            <center><h2 style="padding-left:10px">Based On Your Purchase</h2></center>
-                            <hr style="width:60%;border-style:solid" />
-                            }
-                            <div class="carousel-inner">
-                                @for (int i = 0; i < Model.BasedOnPurchase.Count; i = i + 4)
-                                {
-                                    if (i == 0)
-                                    {
-                                        <div class="item active">
-                                            @for (int j = i; j < i + 4&&j<Model.BasedOnPurchase.Count; j++)
-                                            {
-                                                <div class="col-sm-3 col-lg-3 col-md-3">
-                                                    <div class="thumbnail">
-                                                        <a href="@Url.Action("About", "Home",new { id = Model.BasedOnPurchase[j].ProductID })">
-                                                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.BasedOnPurchase[j].ProductPhoto)" />
-                                                        </a>
-                                                        <div class="caption">
-                                                            <h4 class="pull-right">$@Model.BasedOnPurchase[j].ListPrice.ToString("0.00")</h4>
-                                                            <h4>
-                                                                <a href="@Url.Action("About", "Home",new { id = Model.BasedOnPurchase[j].ProductID })">@Model.BasedOnPurchase[j].Name</a>
-                                                            </h4>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            }
-                                        </div>
-                                    }
-                                    if (i != 0)
-                                    {
-                                        <div class="item">
-                                            @for (int j = i; j < i + 4&&j<Model.BasedOnPurchase.Count; j++)
-                                            {
-                                                <div class="col-sm-3 col-lg-3 col-md-3">
-                                                    <div class="thumbnail">
-
-                                                        <a href="@Url.Action("About", "Home",new { id = Model.BasedOnPurchase[j].ProductID })">
-                                                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.BasedOnPurchase[j].ProductPhoto)" />
-                                                        </a>
-                                                        <div class="caption">
-                                                            <h4 class="pull-right">$@Model.BasedOnPurchase[j].ListPrice.ToString("0.00")</h4>
-                                                            <h4>
-                                                                <a href="@Url.Action("About", "Home",new { id = Model.BasedOnPurchase[j].ProductID })">@Model.BasedOnPurchase[j].Name</a>
-                                                            </h4>
-
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            }
-                                        </div>
-                                    }
-                                }
-
-                            </div>
-                            @if (Model.BasedOnPurchase.Count > 0)
-                            {
-                            <a class="left carousel-control" href="#BasedOnYourPurchase" role="button" data-slide="prev">
-                                <span class="glyphicon glyphicon-chevron-left"></span>
-                            </a>
-                            <a class="right carousel-control" href="#BasedOnYourPurchase" role="button" data-slide="next">
-                                <span class="glyphicon glyphicon-chevron-right"></span>
-                            </a>
-                            }
-                        </div>
-                    </div>
-
-
-
-                    <div class="row">
-
-                        <div class="carousel slide" id="PopularinyourArea" data-ride="carousel" data-interval="0">
-                            @if (Model.MostPopularInArea.Count > 0)
-                            {
-                            <center><h2 style="padding-left:10px">Popular in your Area</h2></center>
-                            <hr style="width:60%;border-style:solid" />
-                            }
-                            <div class="carousel-inner">
-                                @for (int i = 0; i < Model.MostPopularInArea.Count; i = i + 4)
-                                {
-                                    if (i == 0)
-                                    {
-                                        <div class="item active">
-                                            @for (int j = i; j < i + 4&&j<Model.MostPopularInArea.Count; j++)
-                                            {
-                                                <div class="col-sm-3 col-lg-3 col-md-3">
-                                                    <div class="thumbnail">
-                                                        <a href="@Url.Action("About", "Home",new { id = Model.MostPopularInArea[j].ProductID })">
-                                                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.MostPopularInArea[j].ProductPhoto)" />
-                                                        </a>
-                                                        <div class="caption">
-                                                            <h4 class="pull-right">$@Model.MostPopularInArea[j].ListPrice.ToString("0.00")</h4>
-                                                            <h4>
-                                                                <a href="@Url.Action("About", "Home",new { id = Model.MostPopularInArea[j].ProductID })">@Model.MostPopularInArea[j].Name</a>
-                                                            </h4>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            }
-                                        </div>
-                                    }
-                                    if (i != 0)
-                                    {
-                                        <div class="item">
-                                            @for (int j = i; j < i + 4&&j<Model.MostPopularInArea.Count; j++)
-                                            {
-                                                <div class="col-sm-3 col-lg-3 col-md-3">
-                                                    <div class="thumbnail">
-
-                                                        <a href="@Url.Action("About", "Home",new { id = Model.MostPopularInArea[j].ProductID })">
-                                                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.MostPopularInArea[j].ProductPhoto)" />
-                                                        </a>
-                                                        <div class="caption">
-                                                            <h4 class="pull-right">$@Model.MostPopularInArea[j].ListPrice.ToString("0.00")</h4>
-                                                            <h4>
-                                                                <a href="@Url.Action("About", "Home",new { id = Model.MostPopularInArea[j].ProductID })">@Model.MostPopularInArea[j].Name</a>
-                                                            </h4>
-
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            }
-                                        </div>
-                                    }
-                                }
-
-                            </div>
-                            @if (Model.MostPopularInArea.Count > 0)
-                            {
-
-                            <a class="left carousel-control" href="#PopularinyourArea" role="button" data-slide="prev">
-                                <span class="glyphicon glyphicon-chevron-left"></span>
-                            </a>
-                            <a class="right carousel-control" href="#PopularinyourArea" role="button" data-slide="next">
-                                <span class="glyphicon glyphicon-chevron-right"></span>
-                            </a>
-                            }
-                        </div>
-                    </div>
-
-
-
-
-                    </div>
                 </div>
+                @if (Model.PopularClothing.Count > 0)
+                {
+                    <a class="left carousel-control" href="#MostPopularClothing" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                                <a class="right carousel-control" href="#MostPopularClothing" role="button" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                </a>
+                }
+            </div>
+        </div>
+
+
+
+
+        <div class="row">
+
+            <div class="carousel slide" id="BasedOnYourPurchase" data-ride="carousel" data-interval="0">
+                @if (Model.BasedOnPurchase.Count > 0)
+                {
+                    <h2 style="padding-left:10px">Based On Your Purchase</h2>
+                }
+                <div class="carousel-inner">
+                    @for (int i = 0; i < Model.BasedOnPurchase.Count; i = i + 4)
+                    {
+                        if (i == 0)
+                        {
+                            <div class="item active">
+                                @for (int j = i; j < i + 4 && j < Model.BasedOnPurchase.Count; j++)
+                                {
+                                    <div class="col-sm-1 col-lg-3 col-md-3 thumbnail">
+                                            <a href="@Url.Action("About", "Home",new { id = Model.BasedOnPurchase[j].ProductID })">
+                                                <img src="data:image;base64,@System.Convert.ToBase64String(Model.BasedOnPurchase[j].ProductPhoto)" />
+                                            </a>
+                                            <div class="caption">
+                                               
+                                                <h4>
+                                                    <a href="@Url.Action("About", "Home",new { id = Model.BasedOnPurchase[j].ProductID })">@Model.BasedOnPurchase[j].Name</a>
+                                                </h4>
+
+                                                <h4>$@Model.BasedOnPurchase[j].ListPrice.ToString("0.00")</h4>
+                                            </div>
+
+                                    </div>
+                                }
+                            </div>
+                        }
+                        if (i != 0)
+                        {
+                            <div class="item">
+                                @for (int j = i; j < i + 4 && j < Model.BasedOnPurchase.Count; j++)
+                                {
+                                    <div class="col-sm-1 col-lg-3 col-md-3 thumbnail">
+
+                                            <a href="@Url.Action("About", "Home",new { id = Model.BasedOnPurchase[j].ProductID })">
+                                                <img src="data:image;base64,@System.Convert.ToBase64String(Model.BasedOnPurchase[j].ProductPhoto)" />
+                                            </a>
+                                            <div class="caption">
+                                                
+                                                <h4>
+                                                    <a href="@Url.Action("About", "Home",new { id = Model.BasedOnPurchase[j].ProductID })">@Model.BasedOnPurchase[j].Name</a>
+                                                </h4>
+                                                <h4>$@Model.BasedOnPurchase[j].ListPrice.ToString("0.00")</h4>
+                                            </div>
+
+                                    </div>
+                                }
+                            </div>
+                        }
+                    }
+
+                </div>
+                @if (Model.BasedOnPurchase.Count > 0)
+                {
+                    <a class="left carousel-control" href="#BasedOnYourPurchase" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                                <a class="right carousel-control" href="#BasedOnYourPurchase" role="button" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                </a>
+                }
+            </div>
+        </div>
+
+
+
+        <div class="row">
+
+            <div class="carousel slide" id="PopularinyourArea" data-ride="carousel" data-interval="0">
+                @if (Model.MostPopularInArea.Count > 0)
+                {
+                    <h2 style="padding-left:10px">Popular in your Area</h2>
+                }
+                <div class="carousel-inner">
+                    @for (int i = 0; i < Model.MostPopularInArea.Count; i = i + 4)
+                    {
+                        if (i == 0)
+                        {
+                            <div class="item active">
+                                @for (int j = i; j < i + 4 && j < Model.MostPopularInArea.Count; j++)
+                                {
+                                    <div class="col-sm-1 col-lg-3 col-md-3 thumbnail">
+
+                                            <a href="@Url.Action("About", "Home",new { id = Model.MostPopularInArea[j].ProductID })">
+                                                <img src="data:image;base64,@System.Convert.ToBase64String(Model.MostPopularInArea[j].ProductPhoto)" />
+                                            </a>
+                                            <div class="caption">
+                                                
+                                                <h4>
+                                                    <a href="@Url.Action("About", "Home",new { id = Model.MostPopularInArea[j].ProductID })">@Model.MostPopularInArea[j].Name</a>
+                                                </h4>
+                                                <h4>$@Model.MostPopularInArea[j].ListPrice.ToString("0.00")</h4>
+                                            </div>
+
+                                    </div>
+                                }
+                            </div>
+                        }
+                        if (i != 0)
+                        {
+                            <div class="item">
+                                @for (int j = i; j < i + 4 && j < Model.MostPopularInArea.Count; j++)
+                                {
+                                    <div class="col-sm-1 col-lg-3 col-md-3 thumbnail">
+
+                                            <a href="@Url.Action("About", "Home",new { id = Model.MostPopularInArea[j].ProductID })">
+                                                <img src="data:image;base64,@System.Convert.ToBase64String(Model.MostPopularInArea[j].ProductPhoto)" />
+                                            </a>
+                                            <div class="caption">
+                                                <h4>
+                                                    <a href="@Url.Action("About", "Home",new { id = Model.MostPopularInArea[j].ProductID })">@Model.MostPopularInArea[j].Name</a>
+                                                </h4>
+                                                <h4>$@Model.MostPopularInArea[j].ListPrice.ToString("0.00")</h4>
+                                            </div>
+
+                                    </div>
+                                }
+                            </div>
+                        }
+                    }
+
+                </div>
+                @if (Model.MostPopularInArea.Count > 0)
+                {
+
+                    <a class="left carousel-control" href="#PopularinyourArea" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                                <a class="right carousel-control" href="#PopularinyourArea" role="button" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                </a>
+                }
+            </div>
+        </div>
     </div>
 </div>
-
-<script>
-    $(document).ready(function () {
-   
-        $('#search').autocomplete({
-            source: function (request, response) {
-                var customer = new Array();
-                $.ajax({
-                    async: false,
-                    cache: false,
-                    type: "POST",
-                    url: "@(Url.Action("Autocomplete", "Home"))",
-                    data: { "term": request.term },
-                    dataType: 'json',
-                    success: function (data) {
-                        for(var i=0;i<data.length;i++)
-                        {
-                            customer[i] = { label: data[i].Name, ID: data[i].ProductID }
-                        }
-                    }           
-            });
-        response(customer);
-            },
-            select: function (e, ui) {
-                
-                window.location.href = 'Home/About/' +ui.item.ID;
-                }
-    });
-    });
-
-
-    $('.cat').click(function () {
-        $(this).find('ul').slideToggle();
-    });
-
-    $('.cat ul').hide();
-</script>

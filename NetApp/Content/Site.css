@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: 'Open Sans', sans-serif;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -37,4 +38,57 @@ textarea {
 .cat {
 
 cursor: pointer;
+}
+
+.container h2{
+    padding:2rem 0 6rem 0;
+}
+
+.container .thumbnail{
+    min-height:28rem;
+    border:none;
+}
+
+.container .thumbnail img{
+    height:18rem;
+    width:75%;
+    padding:0 0 2rem 0;
+}
+
+.container .thumbnail .caption{
+    text-align:center;
+}
+
+.carousel-control{
+    top:5rem;
+}
+
+.carousel-control.left{
+    left:-2rem;
+}
+    
+.carousel-control.right{
+    right:-2rem;
+}
+
+.glyphicon{
+    color:#222;
+}
+
+footer{
+    padding:10rem 0 0 0;
+}
+
+.login-banner{
+    background-image:url("/Images/seattle_retail_loginscreen.png");
+    background-position:center center;
+    background-repeat:no-repeat;
+    background-size:cover;
+    min-height:60rem;
+}
+
+.logo img{
+     display: block;
+     width: 120px;
+     height: 60px;
 }

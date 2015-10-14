@@ -1,27 +1,13 @@
 ﻿@model NetApp.Models.ProductViewModel
 
-<link rel="stylesheet"
-      href="~/Content/jquery-ui.css" />
-<script src="~/Scripts/jquery-1.9.1.js"></script>
-<script src="~/Scripts/jquery-ui.js"></script> 
-
 @{
-    ViewBag.Title = "About";
+    ViewBag.Title = Model.Name;
 }
 
 <div class="container">
-    <!-- Item Heading -->
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">
-                 @Model.Name
-                @*<small>Item Subheading</small>*@
-            </h1>
-        </div>
-    </div>
-    <!-- /.row -->
+
     <!-- Portfolio Item Row -->
-    <div class="row">
+    <div class="row" style="padding-top:6rem;">
         <div class="col-md-6">
            
                 <img src="data:image;base64,@System.Convert.ToBase64String(Model.LargePhoto)"  width="450" height="300" />
@@ -29,6 +15,7 @@
             @*<img class="img-responsive" src="http://placehold.it/750x500" alt="">*@
         </div>
         <div class="col-md-6">
+            <h1>@Model.Name</h1>
             <h3>Product Description</h3>
             <p>@Model.description</p>
             <h3>Product Details</h3>
@@ -36,14 +23,14 @@
                 <li>Color: @Model.color</li>
                 <li>Size:  @Model.size</li>
                 <li>Weight:@Model.Weight</li>
-                <li>Price: @Model.listPrice.ToString("0.00")</li>
+                <li>$ @Model.listPrice.ToString("0.00")</li>
             </ul>
 
             <br /> 
             <div style="float:left">
                 @using (Html.BeginForm())
                 {
-                <b>Count: </b> 
+                <b>Quantity: </b> 
                  @Html.HiddenFor(m => m.ProductId);
                     
 
@@ -67,7 +54,7 @@
   
 
 
-    <div class="row">
+    <div class="row" style="padding-top:6rem;">
 
         <div class="carousel slide" id="testing" data-ride="carousel" data-interval="0">
             <h2 style="padding-left:10px">People who bought this also bought</h2>
@@ -85,10 +72,11 @@
                                             <img src="data:image;base64,@System.Convert.ToBase64String(Model.PeopleAlsoBought[j].LargePhoto)" />
                                         </a>
                                         <div class="caption">
-                                            <h4 class="pull-right">$@Model.PeopleAlsoBought[j].listPrice.ToString("0.00")</h4>
+                                            
                                             <h4>
                                                 <a href="@Url.Action("About", "Home",new { id = Model.PeopleAlsoBought[j].ProductId })">@Model.PeopleAlsoBought[j].Name</a>
                                             </h4>
+                                            <h4>$@Model.PeopleAlsoBought[j].listPrice.ToString("0.00")</h4>
                                         </div>
 
                                     </div>
@@ -108,11 +96,10 @@
                                             <img src="data:image;base64,@System.Convert.ToBase64String(Model.PeopleAlsoBought[j].LargePhoto)" />
                                         </a>
                                         <div class="caption">
-                                            <h4 class="pull-right">$@Model.PeopleAlsoBought[j].listPrice.ToString("0.00")</h4>
                                             <h4>
                                                 <a href="@Url.Action("About", "Home",new { id = Model.PeopleAlsoBought[j].ProductId })">@Model.PeopleAlsoBought[j].Name</a>
                                             </h4>
-
+                                            <h4>$@Model.PeopleAlsoBought[j].listPrice.ToString("0.00")</h4>
                                         </div>
 
                                     </div>
@@ -137,46 +124,5 @@
            </script>
        }
     </div>
-
-    <script>
-    $(function () {
-
-        $('#search').autocomplete({
-            source: function (request, response) {
-                var customer = new Array();
-                $.ajax({
-                    async: false,
-                    cache: false,
-                    type: "POST",
-                    url: "@(Url.Action("Autocomplete", "Home"))",
-                    data: { "term": request.term },
-                    dataType: 'json',
-                    success: function (data) {
-                        for(var i=0;i<data.length;i++)
-                        {
-                            customer[i] = { label: data[i].Name, ID: data[i].ProductID }
-                        }
-                    }
-            });
-        response(customer);
-            },
-            select: function (e, ui) {
-
-                window.location.href = '/Home/About/' +ui.item.ID;
-                }
-    });
-    });
-
-    </script>
     <!-- /.row -->
-    <hr>
-    <!-- Footer -->
-    @*<footer>
-        <div class="row">
-            <div class="col-lg-12">
-                <p>Copyright &copy; Your Website 2014</p>
-            </div>
-        </div>
-        <!-- /.row -->
-    </footer>*@
 </div>
